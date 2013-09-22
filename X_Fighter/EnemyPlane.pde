@@ -20,17 +20,34 @@ class EnemyPlane
     this.speed = speed;
   }
   
+  /*
+  * return the x coordinate of center of plane
+  */
   public int getX()
   {
     return x;
   }
-  
+
+  /*
+  * return the y coordinate of center of plane
+  */  
   public int getY()
   {
-    return y;
+    return y + size;
   }
   
+  /*
+  * return width of plane
+  */
   public int getWidth()
+  {
+    return 2 * size;
+  }
+  
+  /*
+  * return height of plane
+  */
+  public int getHeight()
   {
     return 2 * size;
   }
