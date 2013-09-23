@@ -1,15 +1,12 @@
-int screenHorizontalSize = 300;
-int screenVerticalSize = 500;
-
 MyPlane plane;
 EnemyPlaneGenerator planeGenerator;
 
 void setup() {
   //blank background
-  size(screenHorizontalSize, screenVerticalSize);  
+  size(300, 500);  
 
   plane = new MyPlane(width/2, height);
-  planeGenerator = new EnemyPlaneGenerator(screenHorizontalSize, screenVerticalSize); 
+  planeGenerator = new EnemyPlaneGenerator(width, height); 
   
 }
 
