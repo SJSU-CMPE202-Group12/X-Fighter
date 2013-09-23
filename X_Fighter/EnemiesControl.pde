@@ -26,19 +26,33 @@ class EnemiesControl
   
   public void move()
   {
-    EnemyPlane removePlane = null;
+    // may remove multiplane at a time
+    Set<EnemyPlane> removePlanes = new HashSet<EnemyPlane>();
+    
     for(EnemyPlane e : enemies)
     {
+      // detect collision between the bullets and enemy plane
+      for(Bullet b : plane.bullets)
+      {
+        if(b.collideWithEnemy(e))
+        {
+          b.lifetime = 0;
+          removePlanes.add(e);
+        }
+      }
+      
       e.display();
       e.move();
       if(e.getY() - e.getHeight() / 2 > maxY)
       {
-        removePlane = e;
+        removePlanes.add(e);
       }
     }
-    if(removePlane != null)
-    {
-      this.remove(removePlane);
+    
+    // remove enemy planes that touch the bottom or collide with a bullet
+    for(EnemyPlane e : removePlanes)
+    {      
+      this.remove(e);
     }
   }
 }
