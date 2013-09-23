@@ -11,7 +11,7 @@ class MyPlane {
 
   MyPlane(int x, int y) {
     bullets = new ArrayList<Bullet>();
-    myPlaneImg = loadImage("ship.png");
+    myPlaneImg = loadImage("myplane.png");
     xpos = x;
     ypos = y - getHeight()/2;    
   }

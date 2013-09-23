@@ -8,7 +8,7 @@ class Bullet {
   Bullet(int x, int y) {
     xpos = x;
     ypos = y;
-    bulletImg = loadImage("shot.png"); 
+    bulletImg = loadImage("bullet.png"); 
   }
   
   boolean collideWithEnemy(EnemyPlane ep) {
