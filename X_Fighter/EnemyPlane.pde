@@ -8,19 +8,22 @@ class EnemyPlane
   private int size; // distance from midle of plane to end of "wing"
   private int planeHeight; //heigh of plane
   private int planeSpeed; // speed of plane
+  PImage image;
   
   /*
-  * 
+  * rangeX is the max x coordinate that the plane can appear
   */
   public EnemyPlane(int rangeX, int speed)
   {
-    size = 10;
+    size = 15;
     planeHeight = 2 * size;
     y = planeHeight;
     planeSpeed = speed;
     maxX = rangeX;
     Random r = new Random();
     x = r.nextInt(maxX - size - 1) + size; 
+    image = loadImage("EnemyPlaneImage.png");
+    image.resize(getWidth(), getHeight());
   }
   
   /*
@@ -57,9 +60,8 @@ class EnemyPlane
   
   public void display()
   {
-    noStroke();
-    fill(100);
-    triangle(x, y, x - size, y - planeHeight, x + size, y - planeHeight);
+    imageMode(CENTER);  
+    image(image, x, y); 
   }
   
   public void move()
