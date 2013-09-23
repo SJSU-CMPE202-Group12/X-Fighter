@@ -3,8 +3,11 @@ import java.util.*;
 class EnemiesControl
 {
   private int maxY; // max y coordinate that the plane can go
-  private Set<EnemyPlane> enemies;
+  private Set<EnemyPlane> enemies; // keeps all the planes it will control
   
+  /*
+  * rangeY is the max coordinate that the plane should appear
+  */
   public EnemiesControl(int rangeY)
   {
     enemies = new HashSet<EnemyPlane>();

@@ -25,6 +25,9 @@ class EnemyPlaneGenerator
     planeSpeed = speed;
   }
   
+  /*
+  * set how many frames until next plane appears
+  */
   public void setRatio(int ratio)
   {
     this.ratio = ratio;
@@ -37,7 +40,7 @@ class EnemyPlaneGenerator
     lastPlane = 0;
   }
   
-  public void generateEnemyPlane()
+  private void generateEnemyPlane()
   {
     lastPlane++;
     if(lastPlane >= ratio)
