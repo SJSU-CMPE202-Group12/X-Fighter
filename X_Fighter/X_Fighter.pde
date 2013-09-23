@@ -1,10 +1,16 @@
+int screenHorizontalSize = 300;
+int screenVerticalSize = 500;
+
 MyPlane plane;
+EnemyPlaneGenerator planeGenerator;
 
 void setup() {
   //blank background
-  size(300, 500);  
+  size(screenHorizontalSize, screenVerticalSize);  
 
-  plane = new MyPlane(width/2, height); 
+  plane = new MyPlane(width/2, height);
+  planeGenerator = new EnemyPlaneGenerator(screenHorizontalSize, screenVerticalSize); 
+  
 }
 
 void draw() {
@@ -13,5 +19,6 @@ void draw() {
   plane.move();
   plane.shoot();
   plane.display();  
+  planeGenerator.display();
 }
 

@@ -4,20 +4,23 @@ class EnemyPlane
 {
   private int x; // x coordinate of front of plane 
   private int y; // y coordinate of front of plane
-  private int size; // plane width / 2
-  private int maxX; // max x coordinate that the plane can go
-  private int maxY; // max y coordinate that the plane can go
-  private int speed;
+  private int maxX; // max x coordinate that the plane can appear
+  private int size; // distance from midle of plane to end of "wing"
+  private int planeHeight; //heigh of plane
+  private int planeSpeed; // speed of plane
   
-  public EnemyPlane(int rangeX, int rangeY, int speed)
+  /*
+  * 
+  */
+  public EnemyPlane(int rangeX, int speed)
   {
     size = 10;
-    y = 2 * size;
+    planeHeight = 2 * size;
+    y = planeHeight;
+    planeSpeed = speed;
     maxX = rangeX;
-    maxY = rangeY;
     Random r = new Random();
     x = r.nextInt(maxX - size - 1) + size; 
-    this.speed = speed;
   }
   
   /*
@@ -33,7 +36,7 @@ class EnemyPlane
   */  
   public int getY()
   {
-    return y + size;
+    return y + planeHeight / 2;
   }
   
   /*
@@ -49,19 +52,19 @@ class EnemyPlane
   */
   public int getHeight()
   {
-    return 2 * size;
+    return planeHeight;
   }
   
   public void display()
   {
     noStroke();
     fill(100);
-    triangle(x, y, x - size, y - 2 * size, x + size, y - 2 * size);
+    triangle(x, y, x - size, y - planeHeight, x + size, y - planeHeight);
   }
   
   public void move()
   {
-    y += speed;
+    y += planeSpeed;
     display();
   }
 }
