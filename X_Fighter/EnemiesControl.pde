@@ -2,9 +2,10 @@ import java.util.*;
 
 class EnemiesControl
 {
+  public int count=0;
   private int maxY; // max y coordinate that the plane can go
   private Set<EnemyPlane> enemies; // keeps all the planes it will control
-  
+
   /*
   * rangeY is the max coordinate that the plane should appear
   */
@@ -37,6 +38,8 @@ class EnemiesControl
         if(b.collideWithEnemy(e))
         {
           b.lifetime = 0;
+          count=count+1;
+          Score.counter=count;
           removePlanes.add(e);
         }
       }
