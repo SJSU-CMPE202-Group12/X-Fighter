@@ -6,14 +6,18 @@ class MyPlane {
   int speed = 2; // move 2 pixels per frame if the arrow key is pressed
   int shootRate = 15; // shoot one bullet every 15 frames
   int nextShoot = 0;  // when to shoot the next bullet
+  int size = 25;
+  int planeHeight = 2 * size;
   ArrayList<Bullet> bullets;
   PImage myPlaneImg;
 
   MyPlane(int x, int y) {
     bullets = new ArrayList<Bullet>();
     myPlaneImg = loadImage("myplane.png");
+    myPlaneImg.resize(getWidth(), getHeight()); 
     xpos = x;
-    ypos = y - getHeight()/2;    
+    ypos = y - getHeight()/2;
+       
   }
   
   int getX(){
@@ -25,11 +29,11 @@ class MyPlane {
   }
   
   int getWidth(){
-    return myPlaneImg.width;
+    return 2 * size;
   }
   
   int getHeight(){
-    return myPlaneImg.height;
+    return planeHeight;
   }
   
   void shoot() {    
