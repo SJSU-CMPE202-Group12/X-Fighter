@@ -3,7 +3,7 @@ import java.util.*;
 class EnemiesControl
 {
   private int maxY; // max y coordinate that the plane can go
-  public static int count=0;
+  
   private Set<EnemyPlane> enemies; // keeps all the planes it will control
   
   /*
@@ -39,7 +39,7 @@ class EnemiesControl
         {
           b.lifetime = 0;
           removePlanes.add(e);
-          count++;
+          Score.counter++;
         }
       }
       
