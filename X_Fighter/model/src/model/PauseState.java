@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 public class PauseState implements IBoardState {
 	
 	private GameBoard board;
@@ -36,6 +39,11 @@ public class PauseState implements IBoardState {
 	@Override
 	public void draw() {
 		board.drawText("Pause");
+		
+		Dictionary<String, String> dict = new Hashtable<String, String>();
+		dict.put("Play(Resume) ¡ü", "play");
+		dict.put("Back to Main Menu ¡ú", "mainmenu");
+		board.drawMenu(dict);
 	}
 
 }

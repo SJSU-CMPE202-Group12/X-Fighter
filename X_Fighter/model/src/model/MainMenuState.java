@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 public class MainMenuState implements IBoardState {
 	
 	private GameBoard board;
@@ -37,6 +39,11 @@ public class MainMenuState implements IBoardState {
 	@Override
 	public void draw() {
 		board.drawText("Main Menu");
+		
+		Dictionary<String, String> dict = new Hashtable<String, String>();
+		dict.put("Play(New) ¡ü", "play");
+		dict.put("About ¡ý", "about");
+		board.drawMenu(dict);
 	}
 
 }
