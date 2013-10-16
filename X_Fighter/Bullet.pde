@@ -14,7 +14,7 @@ class Bullet {
   
   boolean collideWithEnemy(EnemyPlane ep) {
     return (xpos <= ep.getX() + ep.getWidth()/2 && xpos >= ep.getX() - ep.getWidth()/2 && ypos <= ep.getY() + ep.getHeight()/2 && ypos >= ep.getY() - ep.getHeight());
-  }
+  }  
   
   void display() {
     if (lifetime > 0) {

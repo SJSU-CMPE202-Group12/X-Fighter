@@ -1,7 +1,12 @@
+import gifAnimation.*;
 import java.util.*;
+
+Gif myAnimation;
 MyPlane plane;
 EnemyPlaneGenerator planeGenerator;
-  PFont AvenirNext;
+  PFont AvenirNext;   
+   ArrayList <Boolean> collision;
+   ArrayList<Explosion> explosions;
 
 void setup() {
   //blank background
@@ -10,6 +15,14 @@ void setup() {
 
   plane = new MyPlane(width/2, height);
   planeGenerator = new EnemyPlaneGenerator(width, height); 
+  Gif Animation = new Gif(this, "Explosion.gif");
+  
+  collision =new ArrayList<Boolean>() ;
+  collision.add(false);
+
+   myAnimation=Animation;
+   myAnimation.noLoop();
+
   
 }
 
@@ -20,11 +33,16 @@ textFont( AvenirNext, 12 );
 textAlign( LEFT );
 text("Score",10,10);
 text( s, 22, 22 );
-
   
   plane.move();
   plane.shoot();
   plane.display();  
   planeGenerator.display();
+ 
+  if(collision.get(collision.size()-1)){
+     explosions.get(explosions.size()-1).display();
+  }
+   
+      
 }
 

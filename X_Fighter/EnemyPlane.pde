@@ -15,7 +15,7 @@ class EnemyPlane
   */
   public EnemyPlane(int rangeX, int speed)
   {
-    size = 15;
+    size = 27;
     planeHeight = 2 * size;
     y = planeHeight;
     planeSpeed = speed;
@@ -61,7 +61,7 @@ class EnemyPlane
   public void display()
   {
     imageMode(CENTER);  
-    image(image, x, y); 
+    image(image, x, y);     
   }
   
   public void move()
