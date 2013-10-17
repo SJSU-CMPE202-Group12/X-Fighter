@@ -18,7 +18,7 @@ class Enemy extends Collide
     planeSpeed = speed;
     maxX = rangeX;
     Random r = new Random();
-    xpos = r.nextInt(maxX - getWidth()/2) + getWidth()/2 - 2;     
+    xpos = r.nextInt(maxX - getWidth()) + getWidth()/2;     
     ypos = -getHeight()/2;
   }
   
