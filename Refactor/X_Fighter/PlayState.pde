@@ -34,15 +34,14 @@ public class PlayState implements IBoardState {
   }
 
   @Override
-  public void toGameOver() throws XFighterException {
+  public void toGameOver() {
     if (beShot()) {
       board.setState(EnuBoardState.GAME_OVER);
     }
   }
 
-  // todo: hit logic
   private boolean beShot() {
-    return true;
+    return fighter.live == 0;
   }
 
   @Override
@@ -54,7 +53,8 @@ public class PlayState implements IBoardState {
     fighter.move();
     fighter.shoot();
     fighter.display();  
-    enemyGenerator.display(fighter);          
+    enemyGenerator.display(fighter);  
+    toGameOver();   
   }
   
   public void initPlayScene() {

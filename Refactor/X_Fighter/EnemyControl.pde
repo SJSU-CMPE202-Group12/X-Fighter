@@ -32,10 +32,10 @@ class EnemyControl
     
     for(Enemy e : enemies)
     {
-      // detect collision between the bullets and enemy plane
+      // check collision between the bullets and enemy plane
       for(Bullet b : fighter.bullets)
       {
-        if(b.collideWithEnemy(e))
+        if(b.collision(e))
         {
           b.lifetime = 0;
           
@@ -46,6 +46,15 @@ class EnemyControl
           removePlanes.add(e);
           Score.counter++;
         }
+      }
+      
+      // check collision between the enemy plane and my plane
+      if(fighter.collision(e)) {
+        fighter.live -= 1;
+        int x= e.getX()-e.getWidth()/4;
+        int y= e.getY()-e.getHeight()/2;
+        fighter.explosions.add(new Explosion(x,y)); 
+        removePlanes.add(e);
       }
       
       e.display();

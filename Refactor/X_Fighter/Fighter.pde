@@ -1,13 +1,12 @@
 // class for my plane
 
-class Fighter {
-  int xpos;  //x coordinate of center of my plane
-  int ypos;  // y coordinate of center of my plane
-  int speed = 2; // move 2 pixels per frame if the arrow key is pressed
-  int shootRate = 15; // shoot one bullet every 15 frames
-  int nextShoot = 0;  // when to shoot the next bullet
-  int size = 25;
-  int planeHeight = 2 * size;
+class Fighter extends Collide {
+  int xpos;    //x coordinate of center of my plane
+  int ypos;    //y coordinate of center of my plane
+  int speed = 2; //move 2 pixels per frame if the arrow key is pressed
+  int shootRate = 15; //shoot one bullet every 15 frames
+  int nextShoot = 0;  //when to shoot the next bullet
+  int live = 1;  //live left of my plane
   ArrayList<Bullet> bullets;
   ArrayList<Explosion> explosions;
   PImage myPlaneImg;
@@ -17,7 +16,7 @@ class Fighter {
     explosions =new ArrayList<Explosion>();
     
     myPlaneImg = loadImage("myplane.png");
-    myPlaneImg.resize(getWidth(), getHeight()); 
+    myPlaneImg.resize(50, 50); 
     xpos = x;
     ypos = y - getHeight()/2;       
   }
@@ -31,19 +30,21 @@ class Fighter {
   }
   
   int getWidth(){
-    return 2 * size;
+    return myPlaneImg.width;
   }
   
   int getHeight(){
-    return planeHeight;
+    return myPlaneImg.height;
   }
   
-  void shoot() {    
-    if (nextShoot == 0) {
-      nextShoot = shootRate;
-      bullets.add(new Bullet(xpos, ypos - getHeight()/2));
+  void shoot() {
+    if (live > 0) {    
+      if (nextShoot == 0) {
+        nextShoot = shootRate;
+        bullets.add(new Bullet(xpos, ypos - getHeight()/2));
+      }
+      nextShoot -= 1;
     }
-    nextShoot -= 1;
   }
 
   // remove the bullet that run out of lifetime and display others
@@ -88,7 +89,8 @@ class Fighter {
     
   void display() {  
     imageMode(CENTER);  
-    image(myPlaneImg, xpos, ypos); 
+    if(live > 0)
+      image(myPlaneImg, xpos, ypos); 
     updateBullet();
     updateExplosion(); 
   }

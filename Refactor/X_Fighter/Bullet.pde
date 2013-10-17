@@ -1,4 +1,4 @@
-public class Bullet {
+public class Bullet extends Collide {
   int xpos;
   int ypos;
   int speed = 4; // move 4 pixels per draw
@@ -9,11 +9,23 @@ public class Bullet {
     xpos = x;
     ypos = y;
     bulletImg = loadImage("bullet.png");
-    bulletImg.resize(7, 16); 
+    bulletImg.resize(5, 12); 
   }
   
-  public boolean collideWithEnemy(Enemy ep) {
-    return (xpos <= ep.getX() + ep.getWidth()/2 && xpos >= ep.getX() - ep.getWidth()/2 && ypos <= ep.getY() + ep.getHeight()/2 && ypos >= ep.getY() - ep.getHeight());
+  int getX(){
+    return xpos;
+  }
+  
+  int getY(){
+    return ypos;
+  }
+  
+  int getWidth(){
+    return bulletImg.width;
+  }
+  
+  int getHeight(){
+    return bulletImg.height;
   }
   
   public void display() {

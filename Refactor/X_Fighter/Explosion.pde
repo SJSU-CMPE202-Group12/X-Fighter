@@ -11,7 +11,7 @@ class Explosion  {
   Explosion(int x, int y){
     xpos = x;
     ypos = y;
-    myAnimation = new Gif(X_Fighter.xFighter, "Explosion.gif");
+    myAnimation = new Gif(xFighter, "Explosion.gif");
     myAnimation.noLoop();
   } 
   

@@ -1,14 +1,13 @@
 import java.util.*;
 
-static PApplet xFighter;
+final PApplet xFighter = this;
 GameBoard board;
 
 public void setup() {
   size(300, 500);
   background(0);
   
-  board = new GameBoard(width, height); 
-  xFighter = this;
+  board = new GameBoard(width, height);
 }
 
 public void draw() {
