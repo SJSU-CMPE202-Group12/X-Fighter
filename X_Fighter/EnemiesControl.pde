@@ -50,6 +50,7 @@ class EnemiesControl
           explosions.add(new Explosion(x,y));
           
           removePlanes.add(e);
+          //explosions.get(explosions.size()-1).display();
           //explosions.add(new Explosion(e.getX()-e.getWidth()/4, e.getY()-e.getHeight()/2));          
           Score.counter++;
         }

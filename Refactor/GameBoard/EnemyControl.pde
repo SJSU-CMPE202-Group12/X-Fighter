@@ -5,14 +5,15 @@ class EnemyControl
   private int maxY; // max y coordinate that the plane can go
   
   private Set<Enemy> enemies; // keeps all the planes it will control
-  
+  ArrayList<Explosion> explosions;
   /*
   * rangeY is the max coordinate that the plane should appear
   */
   public EnemyControl(int rangeY)
   {
     enemies = new HashSet<Enemy>();
-    maxY = rangeY;
+    maxY = rangeY; 
+    explosions =new ArrayList<Explosion>(); 
   }
   
   public void add(Enemy enemy)
@@ -38,6 +39,12 @@ class EnemyControl
         if(b.collideWithEnemy(e))
         {
           b.lifetime = 0;
+          int x= e.getX()-e.getWidth()/4;
+          int y= e.getY()-e.getHeight()/2;
+          explosions.add(new Explosion(x,y));
+          explosions.get(explosions.size()-1).display();
+          // Explosion explor = new Explosion(80,10);
+         //explor.display();          
           removePlanes.add(e);
           Score.counter++;
         }

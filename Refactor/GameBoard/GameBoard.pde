@@ -4,6 +4,8 @@ private int width;
 private int height;
 private IBoardState current_state;
 private List<Button> buttons;
+private Gif myAnimation;
+
 
 public GameBoard() {
   this(300, 500);
@@ -31,6 +33,9 @@ public void setup() {
   background(0);
   current_state = new MainMenuState(this);
   buttons = new ArrayList<Button>();
+ 
+  Gif Animation = new Gif(this, "Explosion.gif");
+  myAnimation=Animation;   
 }
 
 public void setState(int enuState) {

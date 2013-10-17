@@ -15,7 +15,7 @@ class Enemy
   */
   public Enemy(int rangeX, int speed)
   {
-    size = 15;
+    size = 27;
     planeHeight = 2 * size;
     y = planeHeight;
     planeSpeed = speed;

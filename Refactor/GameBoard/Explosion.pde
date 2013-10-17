@@ -5,25 +5,23 @@ class Explosion  {
   int playerHeight = 50;
   int xpos ;
   int ypos ;
-  int lifetime=40;
+  int lifetime=60;
 
   Explosion(int x, int y){
-  xpos = x;
-  ypos = y;
+    xpos = x;
+    ypos = y;
   } 
-
+  
   void display(){
      // image(myAnimation, xpos,ypos,playerWidth,playerHeight);
       lifetime -= 1;
       if (lifetime > 0){
-          myAnimation.play();
-          image(myAnimation, xpos,ypos,playerWidth,playerHeight);
-      }
-      else
-          myAnimation.stop();
-  }  
-   
-   
+        myAnimation.play();
+        image(myAnimation, xpos,ypos,playerWidth,playerHeight);
+     }
+     else
+       myAnimation.stop();
+  }    
 }
 
   
