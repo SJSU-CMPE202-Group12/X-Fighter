@@ -1,11 +1,10 @@
 class EnemyGenerator
 {
-  private int ratio; // how many frames untill next plane appears
   private int lastPlane; // how many frames ago did the last plane appeared
   private int maxX; // max x coordinate that the plane can appear
   private int maxY; // max y coordinate that the plane can go
-  private int planeSpeed; // speed that the planes generated will move
   private EnemyControl control;
+  private Level level;
   
   /*
   * rangeX is the max x coordinate that the plane can appear
@@ -13,29 +12,15 @@ class EnemyGenerator
   */
   public EnemyGenerator(int rangeX, int rangeY)
   {
-    ratio = 100;
     maxX = rangeX;
-    planeSpeed = 1;
-    lastPlane = ratio;
+    level = new Level();
+    lastPlane = level.getRatio();
     control = new EnemyControl(rangeY);
-  }
-  
-  public void setPlaneSpeed(int speed)
-  {
-    planeSpeed = speed;
-  }
-  
-  /*
-  * set how many frames until next plane appears
-  */
-  public void setRatio(int ratio)
-  {
-    this.ratio = ratio;
   }
   
   private void addEnemyPlane()
   {
-    Enemy enemy = new Enemy(maxX, planeSpeed);
+    Enemy enemy = new Enemy(maxX, level.getSpeed());
     control.add(enemy);
     lastPlane = 0;
   }
@@ -43,15 +28,26 @@ class EnemyGenerator
   private void generateEnemyPlane()
   {
     lastPlane++;
-    if(lastPlane >= ratio)
+    if(lastPlane >= level.getRatio())
    {
      addEnemyPlane();
    } 
+  }
+  
+  public int getLevel()
+  {
+    return level.getLevel();
+  }
+  
+  public int getNextLevelPoints()
+  {
+    return level.getNextLevelPoints();
   }
   
   public void display(Fighter fighter)
   {
     generateEnemyPlane();
     control.move(fighter);
+    level.levelUp(Score.counter);
   }
 }

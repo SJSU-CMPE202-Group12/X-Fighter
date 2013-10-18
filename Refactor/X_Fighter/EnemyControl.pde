@@ -39,8 +39,8 @@ class EnemyControl
         {
           b.lifetime = 0;
           
-          int x= e.getX()-e.getWidth()/4;
-          int y= e.getY()-e.getHeight()/2;
+          float x= e.getX()-e.getWidth()/4;
+          float y= e.getY()-e.getHeight()/2;
           fighter.explosions.add(new Explosion(x,y));   
           
           removePlanes.add(e);
@@ -51,8 +51,8 @@ class EnemyControl
       // check collision between the enemy plane and my plane
       if(fighter.collision(e)) {
         fighter.live -= 1;
-        int x= e.getX()-e.getWidth()/4;
-        int y= e.getY()-e.getHeight()/2;
+        float x= e.getX()-e.getWidth()/4;
+        float y= e.getY()-e.getHeight()/2;
         fighter.explosions.add(new Explosion(x,y)); 
         removePlanes.add(e);
       }

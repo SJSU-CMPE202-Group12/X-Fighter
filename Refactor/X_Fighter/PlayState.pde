@@ -63,8 +63,10 @@ public class PlayState implements IBoardState {
     PFont f = createFont("Arial", 12, true);
     textFont(f, 12);
     textAlign(LEFT);
-    text("Score", 10, 10);
-    text(s, 22, 22);
+    text("Level ", 20, 20);
+    text(enemyGenerator.getLevel(), 55, 20);  
+    text("Score", 20, 40);
+    text(s, 55, 40);
     
     Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause");
     board.drawMenu(pauseButton);

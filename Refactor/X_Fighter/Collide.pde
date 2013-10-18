@@ -1,19 +1,19 @@
 public abstract class Collide {
-  public abstract int getX();  
-  public abstract int getY();  
-  public abstract int getWidth();
-  public abstract int getHeight();
+  public abstract float getX();  
+  public abstract float getY();  
+  public abstract float getWidth();
+  public abstract float getHeight();
   
   public boolean collision(Collide that) {
-    int aLeft = this.getX() - this.getWidth()/2;
-    int aRight = this.getX() + this.getWidth()/2;
-    int aTop = this.getY() - this.getHeight()/3;
-    int aBottom = this.getY() + this.getHeight()/3;
+    float aLeft = this.getX() - this.getWidth()/2;
+    float aRight = this.getX() + this.getWidth()/2;
+    float aTop = this.getY() - this.getHeight()/3;
+    float aBottom = this.getY() + this.getHeight()/3;
     
-    int bLeft = that.getX() - that.getWidth()/2;
-    int bRight = that.getX() + that.getWidth()/2;
-    int bTop = that.getY() - that.getHeight()/3;
-    int bBottom = that.getY() + that.getHeight()/3;
+    float bLeft = that.getX() - that.getWidth()/2;
+    float bRight = that.getX() + that.getWidth()/2;
+    float bTop = that.getY() - that.getHeight()/3;
+    float bBottom = that.getY() + that.getHeight()/3;
     
     return ((aLeft < bLeft && bLeft < aRight) || (bLeft < aLeft && aLeft < bRight)) &&   //overlap on x coordinate
       ((aTop < bTop && bTop < aBottom) || (bTop < aTop && aTop < bBottom));  //overlap on y coordinate

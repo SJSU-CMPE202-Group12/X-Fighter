@@ -1,30 +1,30 @@
 public class Bullet extends Collide {
-  int xpos;
-  int ypos;
-  int speed = 4; // move 4 pixels per draw
-  int lifetime = 60; // stay on the screen for 60 frames, i.e. 1 second
+  float xpos;
+  float ypos;
+  float speed = 4; // move 4 pixels per draw
+  float lifetime = 60; // stay on the screen for 60 frames, i.e. 1 second
   PImage bulletImg;
   
-  public Bullet(int x, int y) {
+  public Bullet(float x, float y) {
     xpos = x;
     ypos = y;
     bulletImg = loadImage("bullet.png");
     bulletImg.resize(5, 12); 
   }
   
-  int getX(){
+  float getX(){
     return xpos;
   }
   
-  int getY(){
+  float getY(){
     return ypos;
   }
   
-  int getWidth(){
+  float getWidth(){
     return bulletImg.width;
   }
   
-  int getHeight(){
+  float getHeight(){
     return bulletImg.height;
   }
   

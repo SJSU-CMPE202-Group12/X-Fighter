@@ -3,12 +3,12 @@ import gifAnimation.*;
 class Explosion  {
   int playerWidth = 50;
   int playerHeight = 50;
-  int xpos ;
-  int ypos ;
+  float xpos ;
+  float ypos ;
   int lifetime=45;
   Gif myAnimation;
 
-  Explosion(int x, int y){
+  Explosion(float x, float y){
     xpos = x;
     ypos = y;
     myAnimation = new Gif(xFighter, "Explosion.gif");

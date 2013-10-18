@@ -1,31 +1,28 @@
-import java.util.Random;
-
 class Enemy extends Collide
 {
-  private int xpos; // x coordinate of center of plane 
-  private int ypos; // y coordinate of center of plane
-  private int maxX; // max x coordinate that the plane can appear
-  private int planeSpeed; // speed of plane
+  private float xpos; // x coordinate of center of plane 
+  private float ypos; // y coordinate of center of plane
+  private float maxX; // max x coordinate that the plane can appear
+  private float planeSpeed; // speed of plane (coordinate/frame)
   PImage enemyImg;
   
   /*
   * rangeX is the max x coordinate that the plane can appear
   */
-  public Enemy(int rangeX, int speed)
+  public Enemy(float rangeX, float speed)
   {
     enemyImg = loadImage("EnemyPlaneImage.png");
     enemyImg.resize(50, 40);
     planeSpeed = speed;
     maxX = rangeX;
-    Random r = new Random();
-    xpos = r.nextInt(maxX - getWidth()) + getWidth()/2;     
+    xpos = random(maxX - getWidth()) + getWidth()/2;     
     ypos = -getHeight()/2;
   }
   
   /*
   * return the x coordinate of center of plane
   */
-  public int getX()
+  public float getX()
   {
     return xpos;
   }
@@ -33,7 +30,7 @@ class Enemy extends Collide
   /*
   * return the y coordinate of center of plane
   */  
-  public int getY()
+  public float getY()
   {
     return ypos;
   }
@@ -41,7 +38,7 @@ class Enemy extends Collide
   /*
   * return width of plane
   */
-  public int getWidth()
+  public float getWidth()
   {
     return enemyImg.width;
   }
@@ -49,7 +46,7 @@ class Enemy extends Collide
   /*
   * return height of plane
   */
-  public int getHeight()
+  public float getHeight()
   {
     return enemyImg.height;
   }

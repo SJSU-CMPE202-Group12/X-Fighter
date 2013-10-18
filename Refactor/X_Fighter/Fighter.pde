@@ -1,8 +1,8 @@
 // class for my plane
 
 class Fighter extends Collide {
-  int xpos;    //x coordinate of center of my plane
-  int ypos;    //y coordinate of center of my plane
+  float xpos;    //x coordinate of center of my plane
+  float ypos;    //y coordinate of center of my plane
   int speed = 2; //move 2 pixels per frame if the arrow key is pressed
   int shootRate = 15; //shoot one bullet every 15 frames
   int nextShoot = 0;  //when to shoot the next bullet
@@ -21,19 +21,19 @@ class Fighter extends Collide {
     ypos = y - getHeight()/2;       
   }
   
-  int getX(){
+  float getX(){
     return xpos;
   }
   
-  int getY(){
+  float getY(){
     return ypos;
   }
   
-  int getWidth(){
+  float getWidth(){
     return myPlaneImg.width;
   }
   
-  int getHeight(){
+  float getHeight(){
     return myPlaneImg.height;
   }
   
