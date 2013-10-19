@@ -37,6 +37,7 @@ public class PlayState implements IBoardState {
   public void toGameOver() {
     if (beShot()) {
       board.setState(EnuBoardState.GAME_OVER);
+      Score.counter = 0;
     }
   }
 
