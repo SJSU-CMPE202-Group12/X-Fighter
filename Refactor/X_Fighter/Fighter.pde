@@ -69,7 +69,8 @@ class Fighter extends Collide {
   }
 
   //plane is controled by arrow keys;
-  void move() {
+  
+ /* void move() {
     if (keyPressed) {
       if (key == CODED) {
         if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
@@ -85,7 +86,21 @@ class Fighter extends Collide {
           this.ypos += this.speed;
       }
     }
-  }
+  }*/
+  void move(){
+      if (fighterControl.getLeftKey() && (this.xpos - getWidth()/2 - this.speed) > 0){ 
+          this.xpos -= this.speed;         
+      }
+
+       if (fighterControl.getRightKey() && (this.xpos + getWidth()/2 + this.speed) < width) 
+          this.xpos += this.speed;
+
+       if (fighterControl.getUpKey() && (this.ypos - getHeight()/2 - this.speed) > 0) 
+          this.ypos -= this.speed;
+
+       if (fighterControl.getDownKey() && (this.ypos + getHeight()/2 + this.speed) < height) 
+          this.ypos += this.speed;
+     }
     
   void display() {  
     imageMode(CENTER);  

@@ -70,58 +70,41 @@ class Fighter {
 //  fighterControl.move();
 //  }
   
-    void move(){
-      if (leftPressed && (this.xpos - getWidth()/2 - this.speed) > 0){ 
-          this.xpos -= this.speed;
-          text("left!",10,100);
-      }
+//    void move(){
+//      if (leftPressed && (this.xpos - getWidth()/2 - this.speed) > 0){ 
+//          this.xpos -= this.speed;
+//          text("left!",10,100);
+//      }
+//
+//       if (rightPressed && (this.xpos + getWidth()/2 + this.speed) < width) 
+//          this.xpos += this.speed;
+//
+//       if (upPressed && (this.ypos - getHeight()/2 - this.speed) > 0) 
+//          this.ypos -= this.speed;
+//
+//       if (downPressed && (this.ypos + getHeight()/2 + this.speed) < height) 
+//          this.ypos += this.speed;
+//     }
 
-       if (rightPressed && (this.xpos + getWidth()/2 + this.speed) < width) 
+ void move() {
+    if (keyPressed) {
+      if (key == CODED) {
+        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
+          this.xpos -= this.speed;
+
+        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
           this.xpos += this.speed;
 
-       if (upPressed && (this.ypos - getHeight()/2 - this.speed) > 0) 
+        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
           this.ypos -= this.speed;
 
-       if (downPressed && (this.ypos + getHeight()/2 + this.speed) < height) 
-          this.ypos += this.speed;
-     }
+        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
+          this.ypos += this.speed;      
+    }
+    }
+  }
+  
 
-// void move() {
-//    if (keyPressed) {
-//      if (key == CODED) {
-//        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
-//          this.xpos -= this.speed;
-//
-//        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
-//          this.xpos += this.speed;
-//
-//        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
-//          this.ypos -= this.speed;
-//
-//        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
-//          this.ypos += this.speed;      
-//    }
-//    }
-//  }
-//  
-//   void keyPressed() {
-//    
-//      if (key == CODED) {
-//        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0){ 
-//          this.xpos -= this.speed;
-//          //text("left!",10,100);}
-//
-//        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
-//          this.xpos += this.speed;
-//
-//        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
-//          this.ypos -= this.speed;
-//
-//        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
-//          this.ypos += this.speed;      
-//    
-//    }
-//  }
   
     void keyPressed() {      
     
