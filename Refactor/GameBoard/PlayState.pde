@@ -6,14 +6,14 @@ public class PlayState implements IBoardState {
   private GameBoard board;
   private Fighter fighter;
   private EnemyGenerator enemyGenerator;
-  private FighterControl  fighterControl;
+  //private FighterControl  fighterControl;
 
   public PlayState(GameBoard b) {
     board = b;
     fighter = new Fighter(b.getWidth()/2, b.getHeight());
     enemyGenerator = new EnemyGenerator(b.getWidth(), b.getHeight());
     
-    fighterControl = new FighterControl(fighter);
+    //fighterControl = new FighterControl(fighter);
     //explosions =new ArrayList<Explosion>();  
      //Gif Animation = new Gif(this, "Explosion.gif");
      //myAnimation=Animation; 
@@ -60,7 +60,7 @@ public class PlayState implements IBoardState {
   public void draw() {
     board.drawText("Play");
 
-   // initPlayScene();
+   initPlayScene();
       
       //fighterControl.move();
       fighter.move();

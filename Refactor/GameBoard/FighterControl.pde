@@ -1,66 +1,66 @@
-class FighterControl{
- int  x;
- int  y;
-  boolean upPressed = false;
-  boolean downPressed = false;
-  boolean leftPressed = false;
-  boolean rightPressed = false;
-  int planeWidth;
-  int planeHeight;
-  int speed;
-  
- FighterControl(Fighter fighter){
-   x=fighter.xpos;
-   y=fighter.ypos;
-   planeWidth= fighter.getWidth();
-   planeHeight = fighter.getHeight();
-   speed= fighter.speed;
- }
-  
-  
-  
-  
-  
-  void keyPressed() {      
-      if (key == CODED) {
-        if (keyCode == LEFT){ 
-          leftPressed = true;
-        }
-     
-          //this.xpos -= this.speed;
-
-        if (keyCode == RIGHT ) 
-          rightPressed = true;
-         //this.xpos += this.speed;
-  
-        if (keyCode == UP ) 
-          upPressed = true;
-        //this.ypos -= this.speed;
-       
-  
-        if (keyCode == DOWN) 
-          downPressed = true;
-          //this.ypos += this.speed;
-         
-      }
-    
-  } 
-    void keyReleased(){
-      if (key == CODED) {
-        if (keyCode == UP) {
-          upPressed = false;
-        }
-        else if (keyCode == DOWN) {
-          downPressed = false;
-        }
-        else if (keyCode == LEFT) {
-          leftPressed = false;
-        }
-        else if (keyCode == RIGHT) {
-          rightPressed = false;
-      }
-    }
-  }
+//class FighterControl{
+// int  x;
+// int  y;
+//  boolean upPressed = false;
+//  boolean downPressed = false;
+//  boolean leftPressed = false;
+//  boolean rightPressed = false;
+//  int planeWidth;
+//  int planeHeight;
+//  int speed;
+//  
+// FighterControl(Fighter fighter){
+//   x=fighter.xpos;
+//   y=fighter.ypos;
+//   planeWidth= fighter.getWidth();
+//   planeHeight = fighter.getHeight();
+//   speed= fighter.speed;
+// }
+//  
+//  
+//  
+//  
+//  
+//  void keyPressed() {      
+//      if (key == CODED) {
+//        if (keyCode == LEFT){ 
+//          leftPressed = true;
+//        }
+//     
+//          //this.xpos -= this.speed;
+//
+//        if (keyCode == RIGHT ) 
+//          rightPressed = true;
+//         //this.xpos += this.speed;
+//  
+//        if (keyCode == UP ) 
+//          upPressed = true;
+//        //this.ypos -= this.speed;
+//       
+//  
+//        if (keyCode == DOWN) 
+//          downPressed = true;
+//          //this.ypos += this.speed;
+//         
+//      }
+//    
+//  } 
+//    void keyReleased(){
+//      if (key == CODED) {
+//        if (keyCode == UP) {
+//          upPressed = false;
+//        }
+//        else if (keyCode == DOWN) {
+//          downPressed = false;
+//        }
+//        else if (keyCode == LEFT) {
+//          leftPressed = false;
+//        }
+//        else if (keyCode == RIGHT) {
+//          rightPressed = false;
+//      }
+//    }
+//  }
   
 
 //  void move(){
@@ -97,5 +97,5 @@ class FighterControl{
       
   
   
-}
+
 

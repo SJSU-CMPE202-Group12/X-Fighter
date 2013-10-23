@@ -14,7 +14,7 @@ class Fighter {
   boolean downPressed = false;
   boolean leftPressed = false;
   boolean rightPressed = false;
-  FighterControl fighterControl;
+ // FighterControl fighterControl;
 
 
 
@@ -71,8 +71,6 @@ class Fighter {
 //  }
   
     void move(){
-     keyPressed();
-     keyReleased();
       if (leftPressed && (this.xpos - getWidth()/2 - this.speed) > 0){ 
           this.xpos -= this.speed;
           text("left!",10,100);
@@ -105,50 +103,44 @@ class Fighter {
 //    }
 //    }
 //  }
-  
-   void keyPressed() {
-    
-      if (key == CODED) {
-        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0){ 
-          this.xpos -= this.speed;
-          text("left!",10,100);}
-
-        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
-          this.xpos += this.speed;
-
-        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
-          this.ypos -= this.speed;
-
-        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
-          this.ypos += this.speed;      
-    
-    }
-  }
-  
-//    void keyPressed() {      
+//  
+//   void keyPressed() {
 //    
 //      if (key == CODED) {
-//       
-//        if (keyCode == LEFT) {
-//          leftPressed = true;
-//           //ellipse(xpos, ypos, 30, 30);
-//          //this.xpos -= this.speed;
-//        }
+//        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0){ 
+//          this.xpos -= this.speed;
+//          //text("left!",10,100);}
 //
-//        if (keyCode == RIGHT ) 
-//          rightPressed = true;
-//         //this.xpos += this.speed;
-//  
-//        if (keyCode == UP ) 
-//          upPressed = true;
-//        //this.ypos -= this.speed;
-//       
-//  
-//        if (keyCode == DOWN) 
-//          downPressed = true;
-//          //this.ypos += this.speed;         
-//      }   
-//  } 
+//        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
+//          this.xpos += this.speed;
+//
+//        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
+//          this.ypos -= this.speed;
+//
+//        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
+//          this.ypos += this.speed;      
+//    
+//    }
+//  }
+  
+    void keyPressed() {      
+    
+      if (key == CODED) {
+       
+        if (keyCode == LEFT) {
+          leftPressed = true;          
+        }
+
+        if (keyCode == RIGHT ) 
+          rightPressed = true;         
+  
+        if (keyCode == UP ) 
+          upPressed = true;        
+  
+        if (keyCode == DOWN) 
+          downPressed = true;           
+      }   
+  } 
     void keyReleased(){
       if (key == CODED) {
         if (keyCode == UP) 
