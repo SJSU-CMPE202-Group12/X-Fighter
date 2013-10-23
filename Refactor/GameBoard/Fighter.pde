@@ -10,6 +10,14 @@ class Fighter {
   int planeHeight = 2 * size;
   ArrayList<Bullet> bullets;
   PImage myPlaneImg;
+  boolean upPressed = false;
+  boolean downPressed = false;
+  boolean leftPressed = false;
+  boolean rightPressed = false;
+  FighterControl fighterControl;
+
+
+
 
   Fighter(int x, int y) {
     bullets = new ArrayList<Bullet>();
@@ -56,13 +64,54 @@ class Fighter {
     }
   }
 
-  //plane is controled by arrow keys;
-  void move()
-  {
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
+//  //plane is controled by arrow keys;
+//  void move(){
+//  fighterControl = new FighterControl(this);
+//  fighterControl.move();
+//  }
+  
+    void move(){
+     keyPressed();
+     keyReleased();
+      if (leftPressed && (this.xpos - getWidth()/2 - this.speed) > 0){ 
           this.xpos -= this.speed;
+          text("left!",10,100);
+      }
+
+       if (rightPressed && (this.xpos + getWidth()/2 + this.speed) < width) 
+          this.xpos += this.speed;
+
+       if (upPressed && (this.ypos - getHeight()/2 - this.speed) > 0) 
+          this.ypos -= this.speed;
+
+       if (downPressed && (this.ypos + getHeight()/2 + this.speed) < height) 
+          this.ypos += this.speed;
+     }
+
+// void move() {
+//    if (keyPressed) {
+//      if (key == CODED) {
+//        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
+//          this.xpos -= this.speed;
+//
+//        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
+//          this.xpos += this.speed;
+//
+//        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
+//          this.ypos -= this.speed;
+//
+//        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
+//          this.ypos += this.speed;      
+//    }
+//    }
+//  }
+  
+   void keyPressed() {
+    
+      if (key == CODED) {
+        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0){ 
+          this.xpos -= this.speed;
+          text("left!",10,100);}
 
         if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
           this.xpos += this.speed;
@@ -71,14 +120,63 @@ class Fighter {
           this.ypos -= this.speed;
 
         if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
-          this.ypos += this.speed;
-      }
+          this.ypos += this.speed;      
+    
     }
   }
+  
+//    void keyPressed() {      
+//    
+//      if (key == CODED) {
+//       
+//        if (keyCode == LEFT) {
+//          leftPressed = true;
+//           //ellipse(xpos, ypos, 30, 30);
+//          //this.xpos -= this.speed;
+//        }
+//
+//        if (keyCode == RIGHT ) 
+//          rightPressed = true;
+//         //this.xpos += this.speed;
+//  
+//        if (keyCode == UP ) 
+//          upPressed = true;
+//        //this.ypos -= this.speed;
+//       
+//  
+//        if (keyCode == DOWN) 
+//          downPressed = true;
+//          //this.ypos += this.speed;         
+//      }   
+//  } 
+    void keyReleased(){
+      if (key == CODED) {
+        if (keyCode == UP) 
+          upPressed = false;
+        
+        if (keyCode == DOWN) 
+          downPressed = false;
+        
+         if (keyCode == LEFT) 
+          leftPressed = false;
+        
+        if (keyCode == RIGHT) 
+          rightPressed = false;
+      }
+    
+  }
+  
+  
+  
+ 
+
     
   void display() {  
     imageMode(CENTER);  
     image(myPlaneImg, xpos, ypos); 
+    //move();
+   // text("left!",10,100);
+    
     updateBullet();
   }
 }
