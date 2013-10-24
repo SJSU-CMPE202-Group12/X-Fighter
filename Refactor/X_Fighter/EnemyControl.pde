@@ -44,7 +44,7 @@ class EnemyControl
           fighter.explosions.add(new Explosion(x,y));   
           
           removePlanes.add(e);
-          Score.counter++;
+          Score.COUNTER ++;
         }
       }
       

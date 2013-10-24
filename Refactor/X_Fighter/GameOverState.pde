@@ -43,10 +43,12 @@ public class GameOverState implements IBoardState {
   public void draw() {
     board.drawText("Game Over");
     
-    Dictionary<String, String> dict = new Hashtable<String, String>();
+    LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Start Over", "play");
     dict.put("Back to Main Menu", "mainmenu");
     board.drawMenu(dict);
+    
+    board.drawSummary("Your Score is only " + Score.COUNTER, 130);
   }
 
 }

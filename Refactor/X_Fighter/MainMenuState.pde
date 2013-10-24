@@ -35,12 +35,11 @@ public class MainMenuState implements IBoardState {
 
   @Override
   public void draw() {
-    board.drawText("Main Menu");
+    board.drawText("X-Fighter");
     
-    Dictionary<String, String> dict = new Hashtable<String, String>();
-    dict.put("> Challenge", "play");
-    dict.put("> Help", "about");
+    LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
+    dict.put("Challenge", "play");
+    dict.put("Help", "about");
     board.drawMenu(dict);
   }
 }
-

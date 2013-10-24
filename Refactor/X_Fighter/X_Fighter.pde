@@ -3,17 +3,22 @@ import java.util.*;
 final PApplet xFighter = this;
 GameBoard board;
 FighterControl fighterControl;
+PImage bg;
 
 public void setup() {
   size(300, 500);
-  background(0);
+  noStroke();
+  
+  bg = loadImage("space1.jpg");
+  background(bg);
   
   board = new GameBoard(width, height);
   fighterControl = new FighterControl();
 }
 
 public void draw() {
-  background(0);
+  background(bg);
+  
   board.getState().draw();
   board.mousePressed();
 }

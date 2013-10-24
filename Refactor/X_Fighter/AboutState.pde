@@ -38,10 +38,9 @@ public class AboutState implements IBoardState {
   public void draw() {
     board.drawText("About");
     
-    Dictionary<String, String> dict = new Hashtable<String, String>();
+    LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Back to Main Menu", "mainmenu");
     board.drawMenu(dict);
   }
 
 }
-

@@ -48,6 +48,6 @@ class EnemyGenerator
   {
     generateEnemyPlane();
     control.move(fighter);
-    level.levelUp(Score.counter);
+    level.levelUp(Score.COUNTER);
   }
 }

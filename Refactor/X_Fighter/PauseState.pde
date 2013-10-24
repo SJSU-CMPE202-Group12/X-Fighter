@@ -38,10 +38,9 @@ public class PauseState implements IBoardState {
   public void draw() {
     board.drawText("Pause");
     
-    Dictionary<String, String> dict = new Hashtable<String, String>();
+    LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Resume", "play");
     dict.put("Back to Main Menu", "mainmenu");
     board.drawMenu(dict);
   }
 }
-

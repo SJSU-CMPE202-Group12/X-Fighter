@@ -1,4 +1,3 @@
-
-public static class Score{
-public static int counter=0;
+public static class Score {
+  public static int COUNTER = 0;
 }

@@ -10,7 +10,7 @@ public class PlayState implements IBoardState {
   public PlayState(GameBoard b) {
     board = b;
     fighter = new Fighter(b.getWidth()/2, b.getHeight());
-    enemyGenerator = new EnemyGenerator(b.getWidth(), b.getHeight());    
+    enemyGenerator = new EnemyGenerator(b.getWidth(), b.getHeight());  
   }
 
   @Override
@@ -37,7 +37,7 @@ public class PlayState implements IBoardState {
   public void toGameOver() {
     if (beShot()) {
       board.setState(EnuBoardState.GAME_OVER);
-      Score.counter = 0;
+      Score.COUNTER = 0;
     }
   }
 
@@ -47,20 +47,20 @@ public class PlayState implements IBoardState {
 
   @Override
   public void draw() {
-    board.drawText("Play");
-
-    initPlayScene();
-      
+    
     fighter.move();
     fighter.shoot();
     fighter.display();  
     enemyGenerator.display(fighter);  
+    
+    drawPlayScene();
     toGameOver();   
   }
   
-  public void initPlayScene() {
-    background(0);
-    String s = "" + Score.counter;
+  public void drawPlayScene() {
+    //background(0);
+    
+    String s = "" + Score.COUNTER;
     PFont f = createFont("Arial", 12, true);
     textFont(f, 12);
     textAlign(LEFT);
@@ -69,7 +69,7 @@ public class PlayState implements IBoardState {
     text("Score", 20, 40);
     text(s, 55, 40);
     
-    Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause");
+    Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause", LEFT);
     board.drawMenu(pauseButton);
   }
 
