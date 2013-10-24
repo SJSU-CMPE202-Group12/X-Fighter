@@ -3,7 +3,8 @@
 class Fighter extends Collide {
   float xpos;    //x coordinate of center of my plane
   float ypos;    //y coordinate of center of my plane
-  int speed = 2; //move 2 pixels per frame if the arrow key is pressed
+  //int speed = 2; //move 2 pixels per frame if the arrow key is pressed
+  int speed;
   int shootRate = 15; //shoot one bullet every 15 frames
   int nextShoot = 0;  //when to shoot the next bullet
   int live = 1;  //live left of my plane
@@ -87,20 +88,18 @@ class Fighter extends Collide {
       }
     }
   }*/
+  
   void move(){
-      if (fighterControl.getLeftKey() && (this.xpos - getWidth()/2 - this.speed) > 0){ 
-          this.xpos -= this.speed;         
-      }
-
-       if (fighterControl.getRightKey() && (this.xpos + getWidth()/2 + this.speed) < width) 
-          this.xpos += this.speed;
-
-       if (fighterControl.getUpKey() && (this.ypos - getHeight()/2 - this.speed) > 0) 
-          this.ypos -= this.speed;
-
-       if (fighterControl.getDownKey() && (this.ypos + getHeight()/2 + this.speed) < height) 
-          this.ypos += this.speed;
-     }
+    this.speed = fighterControl.getSpeed();
+    if (fighterControl.getLeftKey() && (this.xpos - getWidth()/2 - this.speed) > 0)
+       this.xpos -= this.speed;  
+    if (fighterControl.getRightKey() && (this.xpos + getWidth()/2 + this.speed) < width)
+       this.xpos += this.speed;
+    if (fighterControl.getUpKey() && (this.ypos - getHeight()/2 - this.speed) > 0)
+       this.ypos -= this.speed;
+    if (fighterControl.getDownKey() && (this.ypos + getHeight()/2 + this.speed) < height)
+       this.ypos += this.speed;
+ }
     
   void display() {  
     imageMode(CENTER);  

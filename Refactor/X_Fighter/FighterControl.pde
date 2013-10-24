@@ -4,10 +4,21 @@ class FighterControl{
   boolean downPressed = false;
   boolean leftPressed = false;
   boolean rightPressed = false;
+  int speed=2;
 
   
- FighterControl(){   
+ FighterControl(){ 
+
  }
+ 
+ void setSpeed(int a){
+   speed = a;
+ }
+ int getSpeed(){
+   return speed;
+ }
+ 
+
  
  void setLeftKey(){
    leftPressed = true;
