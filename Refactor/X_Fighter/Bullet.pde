@@ -1,8 +1,8 @@
-public class Bullet extends Collide {
+public class Bullet extends Collide implements Component {
   float xpos;
   float ypos;
   float speed = 4; // move 4 pixels per draw
-  float lifetime = 60; // stay on the screen for 60 frames, i.e. 1 second
+  int lifetime = 60; // stay on the screen for 60 frames, i.e. 1 second
   PImage bulletImg;
   
   public Bullet(float x, float y) {
@@ -28,7 +28,22 @@ public class Bullet extends Collide {
     return bulletImg.height;
   }
   
-  public void display() {
+  void addChild(Component c){
+    // no implementation
+  }
+  void removeChild(Component c){
+    // no implementation
+  }
+  
+  int getLife(){
+    return lifetime;
+  }
+  
+  void destroy(){
+    lifetime = 0;
+  }
+  
+  void display() {
     if (lifetime > 0) {
       lifetime -= 1;
       ypos -= speed;

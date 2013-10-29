@@ -3,6 +3,8 @@ import java.util.*;
 final PApplet xFighter = this;
 GameBoard board;
 FighterControl fighterControl;
+Fighter fighter;
+GameComponents gameComponents; // a collection of the Bullet, Enemy, MyPlane, Explosion components in the game
 PImage bg;
 
 public void setup() {

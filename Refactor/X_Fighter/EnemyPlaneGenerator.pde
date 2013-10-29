@@ -1,27 +1,18 @@
 class EnemyGenerator
 {
   private int lastPlane; // how many frames ago did the last plane appeared
-  private int maxX; // max x coordinate that the plane can appear
-  private int maxY; // max y coordinate that the plane can go
-  private EnemyControl control;
   private Level level;
   
-  /*
-  * rangeX is the max x coordinate that the plane can appear
-  * rangeY is the max y coordinate that the plane can appear
-  */
-  public EnemyGenerator(int rangeX, int rangeY)
+  public EnemyGenerator()
   {
-    maxX = rangeX;
     level = new Level();
     lastPlane = level.getRatio();
-    control = new EnemyControl(rangeY);
   }
-  
+
   private void addEnemyPlane()
   {
-    Enemy enemy = new Enemy(maxX, level.getSpeed());
-    control.add(enemy);
+    Enemy enemy = new Enemy(level.getSpeed());
+    gameComponents.addChild(enemy);
     lastPlane = 0;
   }
   
@@ -29,9 +20,9 @@ class EnemyGenerator
   {
     lastPlane++;
     if(lastPlane >= level.getRatio())
-   {
-     addEnemyPlane();
-   } 
+    {
+      addEnemyPlane();
+    } 
   }
   
   public int getLevel()
@@ -44,10 +35,9 @@ class EnemyGenerator
     return level.getNextLevelPoints();
   }
   
-  public void display(Fighter fighter)
+  public void update()
   {
-    generateEnemyPlane();
-    control.move(fighter);
+    generateEnemyPlane();    
     level.levelUp(Score.COUNTER);
   }
 }

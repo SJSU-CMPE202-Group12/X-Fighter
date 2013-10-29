@@ -4,13 +4,16 @@ import java.util.Hashtable;
 public class PlayState implements IBoardState {
 
   private GameBoard board;
-  private Fighter fighter;
   private EnemyGenerator enemyGenerator; 
 
   public PlayState(GameBoard b) {
     board = b;
-    fighter = new Fighter(b.getWidth()/2, b.getHeight());
-    enemyGenerator = new EnemyGenerator(b.getWidth(), b.getHeight());  
+    gameComponents = new GameComponents(); 
+    
+    fighter = new Fighter(b.getWidth()/2, b.getHeight());    
+    enemyGenerator = new EnemyGenerator();         
+   
+    Score.COUNTER = 0;
   }
 
   @Override
@@ -35,24 +38,20 @@ public class PlayState implements IBoardState {
 
   @Override
   public void toGameOver() {
-    if (beShot()) {
-      board.setState(EnuBoardState.GAME_OVER);
-      Score.COUNTER = 0;
-    }
+    if (beShot())
+      board.setState(EnuBoardState.GAME_OVER);     
   }
 
   private boolean beShot() {
-    return fighter.live == 0;
+    return fighter.getLife() <= 0;
   }
 
   @Override
   public void draw() {
-    
-    fighter.move();
     fighter.shoot();
-    fighter.display();  
-    enemyGenerator.display(fighter);  
-    
+    enemyGenerator.update();
+    gameComponents.display();
+        
     drawPlayScene();
     toGameOver();   
   }
@@ -68,6 +67,8 @@ public class PlayState implements IBoardState {
     text(enemyGenerator.getLevel(), 55, 20);  
     text("Score", 20, 40);
     text(s, 55, 40);
+    text("Live", 20, 60);
+    text(fighter.getLife(), 55, 60);
     
     Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause", LEFT);
     board.drawMenu(pauseButton);

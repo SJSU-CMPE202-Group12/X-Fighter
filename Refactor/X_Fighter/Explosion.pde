@@ -1,6 +1,6 @@
 import gifAnimation.*;
 
-class Explosion  {
+class Explosion implements Component {
   int playerWidth = 50;
   int playerHeight = 50;
   float xpos ;
@@ -14,6 +14,21 @@ class Explosion  {
     myAnimation = new Gif(xFighter, "Explosion.gif");
     myAnimation.noLoop();
   } 
+  
+  void addChild(Component c){
+    // no implementation
+  }
+  void removeChild(Component c){
+    // no implementation
+  }
+  
+  int getLife(){
+    return lifetime;
+  }
+  
+  void destroy(){
+    lifetime = 0;
+  }
   
   void display(){
       lifetime -= 1;
