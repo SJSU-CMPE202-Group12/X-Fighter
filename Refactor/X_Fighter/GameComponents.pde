@@ -1,4 +1,4 @@
-public class GameComponents implements Component {
+public class GameComponents implements Component, Iterable<Component> {
   private ArrayList<Component> components = new ArrayList<Component>();
   
   void addChild(Component c){
@@ -22,5 +22,9 @@ public class GameComponents implements Component {
       else
         c.display();
     }
+  }
+  
+  public Iterator<Component> iterator(){
+    return components.iterator();
   }
 }

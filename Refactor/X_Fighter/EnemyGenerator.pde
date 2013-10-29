@@ -2,17 +2,19 @@ class EnemyGenerator
 {
   private int lastPlane; // how many frames ago did the last plane appeared
   private Level level;
+  private GameComponents enemyComponents;
   
-  public EnemyGenerator()
+  public EnemyGenerator(GameComponents gc)
   {
     level = new Level();
     lastPlane = level.getRatio();
+    enemyComponents = gc;
   }
 
   private void addEnemyPlane()
   {
     Enemy enemy = new Enemy(level.getSpeed());
-    gameComponents.addChild(enemy);
+    enemyComponents.addChild(enemy);
     lastPlane = 0;
   }
   

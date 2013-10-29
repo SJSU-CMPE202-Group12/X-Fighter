@@ -4,15 +4,24 @@ import java.util.Hashtable;
 public class PlayState implements IBoardState {
 
   private GameBoard board;
+  private Fighter fighter;
   private EnemyGenerator enemyGenerator; 
+  private GameComponents gameComponents; // a collection of the Bullet, Enemy, MyPlane, Explosion components in the game
+  private GameComponents fighterComponents;
+  private GameComponents enemyComponents;
 
   public PlayState(GameBoard b) {
     board = b;
     gameComponents = new GameComponents(); 
-    
-    fighter = new Fighter(b.getWidth()/2, b.getHeight());    
-    enemyGenerator = new EnemyGenerator();         
-   
+    fighterComponents = new GameComponents();
+    enemyComponents = new GameComponents();
+
+    gameComponents.addChild(fighterComponents);
+    gameComponents.addChild(enemyComponents);
+
+    fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);    
+    enemyGenerator = new EnemyGenerator(enemyComponents);         
+
     Score.COUNTER = 0;
   }
 
@@ -39,26 +48,48 @@ public class PlayState implements IBoardState {
   @Override
   public void toGameOver() {
     if (beShot())
-      board.setState(EnuBoardState.GAME_OVER);     
+      board.setState(EnuBoardState.GAME_OVER);
   }
 
   private boolean beShot() {
     return fighter.getLife() <= 0;
   }
 
+  private void checkCollision() {
+    //check collision between enemy and fighter
+    for (Component e : enemyComponents) {
+      Collide enemy = (Collide) e;
+      for (Component c : fighterComponents) {
+        Collide fighter = (Collide) c;
+        if (enemy.collision(fighter))
+        {
+          enemy.destroy();
+          fighter.destroy();
+          gameComponents.addChild(new Explosion(enemy.getX(), enemy.getY()));          
+          //if enemy collide with my plane, my plane will explode too
+          if (fighter.getClass().getName() == "X_Fighter$MyPlane") {            
+            gameComponents.addChild(new Explosion(fighter.getX(), fighter.getY()));
+          }
+        }
+      }
+    }
+  }
+
+
   @Override
   public void draw() {
     fighter.shoot();
     enemyGenerator.update();
+    checkCollision();
     gameComponents.display();
-        
+
     drawPlayScene();
-    toGameOver();   
+    toGameOver();
   }
-  
+
   public void drawPlayScene() {
     //background(0);
-    
+
     String s = "" + Score.COUNTER;
     PFont f = createFont("Arial", 12, true);
     textFont(f, 12);
@@ -69,10 +100,9 @@ public class PlayState implements IBoardState {
     text(s, 55, 40);
     text("Live", 20, 60);
     text(fighter.getLife(), 55, 60);
-    
+
     Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause", LEFT);
     board.drawMenu(pauseButton);
   }
-
 }
 

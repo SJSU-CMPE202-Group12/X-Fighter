@@ -81,20 +81,6 @@ class Enemy extends Collide implements Component
     //if the enemy plane move out of the screen, set live to zero
     if(getY() - getHeight() / 2 > height){
       live = 0;
-    } else {
-    //check collide with fighter
-      for(Component c : fighter.components){
-        Collide obj = (Collide) c;
-        if(this.collision(obj))
-        {
-          obj.destroy();
-          this.destroy();
-          
-          float x= getX()-getWidth()/4;
-          float y= getY()-getHeight()/2;
-          gameComponents.addChild(new Explosion(x,y));   
-        }
-      }
-    }
+    } 
   }
 }
