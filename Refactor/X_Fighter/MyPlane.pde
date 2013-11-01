@@ -3,6 +3,7 @@ class MyPlane extends Collide implements Component {
   private float ypos;    //y coordinate of center of my plane
   private int speed;
   private int live = 3;  //live left of my plane
+  private int disappear = 0; 
   private PImage myPlaneImg;
 
   MyPlane(int x, int y) {
@@ -42,6 +43,12 @@ class MyPlane extends Collide implements Component {
   void destroy(){
     live -= 1;
     Score.COUNTER --;
+    resetDisappear();
+  }
+  
+  void resetDisappear()
+  {
+    disappear = 30; //if my plane is hit by enemy, it will disappear for 30 frames
   }
    //plane is controled by arrow keys;
   
@@ -76,10 +83,13 @@ class MyPlane extends Collide implements Component {
   }
     
   void display() {
-    move();  
-    imageMode(CENTER);  
-    if(live > 0)
+    if (disappear == 0 && live > 0){
+      move();  
+      imageMode(CENTER);  
       image(myPlaneImg, xpos, ypos);
+    }
+    else
+      disappear--;
   }
 }
 
