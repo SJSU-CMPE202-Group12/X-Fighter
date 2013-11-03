@@ -14,10 +14,15 @@ class EnemyGenerator
 
   private void addEnemyPlane()
   {
-    Enemy enemy = new Enemy(level.getSpeed());
-    enemy.setShoot(enemyComponents); // enemy plane that can shoot and add bullets to the components
-    enemyComponents.addChild(enemy);
-    
+    if(level.getLevel()>=3){ //when arriving level 3, the enemyplane could shooting
+      Enemy enemyPlaneWithShooting = new EnemyPlaneWithShooting(level.getSpeed());
+      enemyPlaneWithShooting.setShoot(enemyComponents); // enemy plane that can shoot and add bullets to the components
+      enemyComponents.addChild(enemyPlaneWithShooting);
+    }
+    else{
+      Enemy enemyPlane = new EnemyPlane(level.getSpeed());     
+      enemyComponents.addChild(enemyPlane);
+    }
     lastPlane = 0;
   }
   

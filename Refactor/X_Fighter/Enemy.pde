@@ -1,23 +1,34 @@
-class Enemy extends Collide implements Component
+abstract class Enemy extends Collide implements Component
 {
-  private float xpos; // x coordinate of center of plane 
-  private float ypos; // y coordinate of center of plane
-  private float planeSpeed; // speed of plane (coordinate/frame)
+  
+  
+  float xpos; // x coordinate of center of plane 
+  float ypos; // y coordinate of center of plane
+  float planeSpeed; // speed of plane (coordinate/frame)
   private int live;
-  private boolean shoot = false; //does this enemy plane shoot?
-  private int shootRate = 30; //shoot one bullet every 30 frames
-  private int nextShoot = 0;  //when to shoot the next bullet
-  private GameComponents enemyComponents;
+  boolean shoot = false; //does this enemy plane shoot?
+  int shootRate = 30; //shoot one bullet every 30 frames
+  int nextShoot = 0;  //when to shoot the next bullet
+  GameComponents enemyComponents;
+  
   PImage enemyImg;
  
   public Enemy(float speed)
   {    
     enemyImg = loadImage("EnemyPlaneImage.png");
     enemyImg.resize(50, 40);
-    live = 1;   //enemy plane has only one life.
+    //live = 1;   //enemy plane has only one life.
     planeSpeed = speed;
     xpos = random(width - getWidth()) + getWidth()/2;     
     ypos = -getHeight()/2;
+  }
+  
+  public void setLive(int live){
+    this.live = live;
+  }
+  
+  public int getLive(){
+    return live;
   }
   
   /*
@@ -74,7 +85,7 @@ class Enemy extends Collide implements Component
   public void display()
   {
     move();
-    shoot();
+    //shoot();
     imageMode(CENTER);  
     if (live > 0) 
       image(enemyImg, xpos, ypos); 
@@ -89,19 +100,9 @@ class Enemy extends Collide implements Component
     } 
   }
   
-  void setShoot(GameComponents gc) {
-    shoot = true;
-    enemyComponents = gc;
+  void  setShoot(GameComponents gc) {
+  
   }
   
-  void shoot() {
-    if (shoot && live > 0) {    
-      if (nextShoot == 0) {
-        nextShoot = shootRate;
-        Bullet b = new Bullet(xpos, ypos + getHeight()/2, 1);
-        enemyComponents.addChild(b);
-      }
-      nextShoot -= 1;
-    }
-  }
+  
 }
