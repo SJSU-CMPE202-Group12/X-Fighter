@@ -19,7 +19,8 @@ public class PlayState implements IBoardState {
     gameComponents.addChild(fighterComponents);
     gameComponents.addChild(enemyComponents);
 
-    fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);    
+    fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
+    fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);         
 
     Score.COUNTER = 0;
@@ -66,8 +67,8 @@ public class PlayState implements IBoardState {
           enemy.destroy();
           fighter.destroy();
           gameComponents.addChild(new Explosion(enemy.getX(), enemy.getY()));          
-          //if enemy collide with my plane, my plane will explode too
-          if (fighter.getClass().getName() == "X_Fighter$MyPlane") {            
+          //if enemy collide with my plane and my plane is visible, then my plane will explode too
+          if (fighter.getClass().getName() == "X_Fighter$Fighter" && ((Fighter)fighter).visible()) {            
             gameComponents.addChild(new Explosion(fighter.getX(), fighter.getY()));
           }
         }
@@ -78,7 +79,6 @@ public class PlayState implements IBoardState {
 
   @Override
   public void draw() {
-    fighter.shoot();
     enemyGenerator.update();
     checkCollision();
     gameComponents.display();

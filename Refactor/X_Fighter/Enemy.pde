@@ -4,10 +4,14 @@ class Enemy extends Collide implements Component
   private float ypos; // y coordinate of center of plane
   private float planeSpeed; // speed of plane (coordinate/frame)
   private int live;
+  private boolean shoot = false; //does this enemy plane shoot?
+  private int shootRate = 30; //shoot one bullet every 30 frames
+  private int nextShoot = 0;  //when to shoot the next bullet
+  private GameComponents enemyComponents;
   PImage enemyImg;
  
   public Enemy(float speed)
-  {
+  {    
     enemyImg = loadImage("EnemyPlaneImage.png");
     enemyImg.resize(50, 40);
     live = 1;   //enemy plane has only one life.
@@ -70,6 +74,7 @@ class Enemy extends Collide implements Component
   public void display()
   {
     move();
+    shoot();
     imageMode(CENTER);  
     if (live > 0) 
       image(enemyImg, xpos, ypos); 
@@ -82,5 +87,21 @@ class Enemy extends Collide implements Component
     if(getY() - getHeight() / 2 > height){
       live = 0;
     } 
+  }
+  
+  void setShoot(GameComponents gc) {
+    shoot = true;
+    enemyComponents = gc;
+  }
+  
+  void shoot() {
+    if (shoot && live > 0) {    
+      if (nextShoot == 0) {
+        nextShoot = shootRate;
+        Bullet b = new Bullet(xpos, ypos + getHeight()/2, 1);
+        enemyComponents.addChild(b);
+      }
+      nextShoot -= 1;
+    }
   }
 }

@@ -4,10 +4,12 @@ public class Bullet extends Collide implements Component {
   float speed = 4; // move 4 pixels per draw
   int lifetime = 60; // stay on the screen for 60 frames, i.e. 1 second
   PImage bulletImg;
+  int direction; // moving direction of the bullet, -1 means moving upwards, 1 means moving downwards
   
-  public Bullet(float x, float y) {
+  public Bullet(float x, float y, int d) {
     xpos = x;
     ypos = y;
+    direction = d;
     bulletImg = loadImage("bullet.png");
     bulletImg.resize(5, 12); 
   }
@@ -46,7 +48,7 @@ public class Bullet extends Collide implements Component {
   void display() {
     if (lifetime > 0) {
       lifetime -= 1;
-      ypos -= speed;
+      ypos += direction * speed;
       imageMode(CENTER);
       image(bulletImg, xpos, ypos); 
     }
