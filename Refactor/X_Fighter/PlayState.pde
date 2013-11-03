@@ -1,3 +1,4 @@
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -64,8 +65,9 @@ public class PlayState implements IBoardState {
         Collide fighter = (Collide) c;
         if (enemy.collision(fighter))
         {
-          enemy.destroy();
+          boolean collision = enemy.destroy();
           fighter.destroy();
+          if(collision == true)
           gameComponents.addChild(new Explosion(enemy.getX(), enemy.getY()));          
           //if enemy collide with my plane and my plane is visible, then my plane will explode too
           if (fighter.getClass().getName() == "X_Fighter$Fighter" && ((Fighter)fighter).visible()) {            

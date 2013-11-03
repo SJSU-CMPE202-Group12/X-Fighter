@@ -1,9 +1,11 @@
-class EnemyPlane extends Enemy{
+class EnemyPlaneLevel1 extends Enemy{
   
-   public EnemyPlane(float speed)
+   public EnemyPlaneLevel1(float speed)
   {     
     super(speed);
     setLive(1);   //enemy plane has only one life. 
   } 
+  
+
 
 }

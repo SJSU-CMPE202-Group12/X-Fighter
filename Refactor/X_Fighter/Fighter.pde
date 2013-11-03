@@ -47,39 +47,25 @@ class Fighter extends Collide implements Component {
     return live;
   }
   
-  void destroy(){
+  boolean destroy(){
     // the my plane is disappeared from the screen then it won't be destroyed
     if (visible()) {
       live -= 1;
       resetDisappear();
+      return true;
     }
+    return false;
   }
   
   void resetDisappear()
   {
     disappear = 30; //if my plane is hit by enemy, it will disappear for 30 frames
   }
+   
+   
    //plane is controled by arrow keys;
   
- /* void move() {
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == LEFT && (this.xpos - getWidth()/2 - this.speed) > 0) 
-          this.xpos -= this.speed;
-
-        if (keyCode == RIGHT && (this.xpos + getWidth()/2 + this.speed) < width) 
-          this.xpos += this.speed;
-
-        if (keyCode == UP && (this.ypos - getHeight()/2 - this.speed) > 0) 
-          this.ypos -= this.speed;
-
-        if (keyCode == DOWN && (this.ypos + getHeight()/2 + this.speed) < height) 
-          this.ypos += this.speed;
-      }
-    }
-  }*/
-  
-  void move(){
+ void move(){
     this.speed = fighterControl.getSpeed();
     if (fighterControl.getLeftKey() && (this.xpos - getWidth()/2 - this.speed) > 0)
        this.xpos -= this.speed;  

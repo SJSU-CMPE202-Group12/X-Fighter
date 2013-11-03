@@ -3,7 +3,7 @@ public abstract class Collide {
   public abstract float getY();  
   public abstract float getWidth();
   public abstract float getHeight();
-  public abstract void destroy();
+  public abstract boolean destroy();
   
   public boolean collision(Collide that) {
     float aLeft = this.getX() - this.getWidth()/2;

@@ -41,8 +41,9 @@ public class Bullet extends Collide implements Component {
     return lifetime;
   }
   
-  void destroy(){
+  boolean destroy(){
     lifetime = 0;
+    return true;
   }
   
   void display() {
