@@ -1,14 +1,12 @@
-public class DefaultShooter implements IShootDecorator {
+public class DefaultShooter extends Shooter {
   
-  private GameComponents components;
-  
-  public DefaultShooter(GameComponents gameComponents) {
-    components = gameComponents;
+  public DefaultShooter(GameComponents gc, Fighter plane, int direction) {
+    super(gc, plane, direction);
   }
   
-  public void shoot(float x, float y, int direction)
+  public void shoot()
   {
-    Bullet b = new Bullet(x, y, direction);
+    Bullet b = new Bullet(plane.getX(), plane.getY() - plane.getHeight()/2, direction);
     components.addChild(b);  
   }
 }

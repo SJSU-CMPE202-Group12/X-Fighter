@@ -16,7 +16,8 @@ class Fighter extends Collide implements Component {
     xpos = x;
     ypos = y - getHeight()/2;   
     fighterComponents = gc;    
-    shooter = new DefaultShooter(gc);
+    shooter = new DefaultShooter(gc, this, -1);
+    //shooter = new MultipleBulletsShooter(gc, this, -1);
   }
   
   float getX(){
@@ -94,7 +95,7 @@ class Fighter extends Collide implements Component {
     if (live > 0) {    
       if (nextShoot == 0) {
         nextShoot = shootRate;
-        shooter.shoot(xpos, ypos - getHeight()/2, -1);
+        shooter.shoot();
       }
       nextShoot -= 1;
     }
