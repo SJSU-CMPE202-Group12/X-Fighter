@@ -8,6 +8,7 @@ class Fighter extends Collide implements Component {
   private int nextShoot = 0;  //when to shoot the next bullet
   private GameComponents fighterComponents;
   private PImage myPlaneImg;
+  private IShootDecorator shooter;
 
   Fighter(int x, int y, GameComponents gc) {
     myPlaneImg = loadImage("myplane.png");
@@ -15,6 +16,7 @@ class Fighter extends Collide implements Component {
     xpos = x;
     ypos = y - getHeight()/2;   
     fighterComponents = gc;    
+    shooter = new DefaultShooter(gc);
   }
   
   float getX(){
@@ -92,8 +94,7 @@ class Fighter extends Collide implements Component {
     if (live > 0) {    
       if (nextShoot == 0) {
         nextShoot = shootRate;
-        Bullet b = new Bullet(xpos, ypos - getHeight()/2, -1);
-        fighterComponents.addChild(b);
+        shooter.shoot(xpos, ypos - getHeight()/2, -1);
       }
       nextShoot -= 1;
     }
