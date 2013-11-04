@@ -5,12 +5,14 @@ public abstract class Treasure extends Collide implements Component{
   protected float xpos;
   protected float ypos;
   protected Fighter plane;
+  protected Blink blink;
   
   public Treasure(float x, float y, int lifeSpam, Fighter plane) {
     xpos = x;
     ypos = y;
     life = lifeSpam;
     this.plane = plane;
+    blink = new Blink(lifeSpam / 2);
   }
   public void addChild(Component c) {}
   
@@ -45,8 +47,11 @@ public abstract class Treasure extends Collide implements Component{
     if (life > 0) 
     {
       life -= 1;
-      imageMode(CENTER);
-      image(treasureImage, xpos, ypos); 
+      if(blink.display(life))
+      {
+        imageMode(CENTER);
+        image(treasureImage, xpos, ypos);
+      } 
     }
     if(this.collision(plane))
     {

@@ -9,7 +9,7 @@ class Fighter extends Collide implements Component {
   private GameComponents fighterComponents;
   private PImage myPlaneImg;
   private IShootDecorator shooter;
-
+  
   Fighter(int x, int y, GameComponents gc) {
     myPlaneImg = loadImage("myplane.png");
     myPlaneImg.resize(50, 50); 
@@ -52,6 +52,7 @@ class Fighter extends Collide implements Component {
     if (visible()) {
       live -= 1;
       resetDisappear();
+      setDefaultShooter();
       return true;
     }
     return false;
@@ -109,5 +110,10 @@ class Fighter extends Collide implements Component {
   public void setShooter(IShootDecorator shooter) {
     this.shooter = shooter;
   }
+  
+  public void setDefaultShooter() {
+    setShooter(new DefaultShooter(fighterComponents, this, -1));
+  }
+    
 }
 

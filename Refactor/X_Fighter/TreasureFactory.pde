@@ -1,7 +1,7 @@
 public class TreasureFactory {
   
-  private float probability = 0.2;
-  private int waitingTime = 0;
+  private float probability = 0.15;
+  private int waitingTime;
   private ArrayList<Class> treasurePossibilities;
   private Fighter plane;
   private float margin = 50;
@@ -15,6 +15,7 @@ public class TreasureFactory {
     treasurePossibilities = new ArrayList();
     treasurePossibilities.add(LifeTreasure.class);
     treasurePossibilities.add(MultipleBulletsTreasure.class);
+    resetWaitingTime();
   }
   
   public void setProbability(float probability) {
@@ -23,8 +24,7 @@ public class TreasureFactory {
   
   private void createTreasure() {
     int treasure = int (random(treasurePossibilities.size()));
-    waitingTime = 600;
-    int lifeSpam = 200;
+    int lifeSpam = 400;
     float x = random(width - 2 * margin) + margin;      
     float y = random(height - 2 * margin) + margin;
     if(treasurePossibilities.get(treasure) == LifeTreasure.class)
@@ -39,6 +39,10 @@ public class TreasureFactory {
     }
   }
 
+  private void resetWaitingTime() {
+    waitingTime = 200;
+  }
+  
   public void manageTreasure() {
     if(waitingTime > 0)
     {
@@ -46,9 +50,9 @@ public class TreasureFactory {
       return;
     }
     float p = random(1);
-    if(p >= probability)
-      return;
-    createTreasure();
+    if(p < probability)
+      createTreasure();
+    resetWaitingTime();
   }
     
 }
