@@ -105,5 +105,9 @@ class Fighter extends Collide implements Component {
   public void increaseLife(int life) {
     live += life;
   }
+  
+  public void setShooter(IShootDecorator shooter) {
+    this.shooter = shooter;
+  }
 }
 

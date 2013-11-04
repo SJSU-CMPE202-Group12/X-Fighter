@@ -6,26 +6,36 @@ public class TreasureFactory {
   private Fighter plane;
   private float margin = 50;
   private GameComponents components;
+  private GameComponents fighterComponents;
   
-  public TreasureFactory(Fighter plane, GameComponents gc) {
+  public TreasureFactory(Fighter plane, GameComponents gc, GameComponents fighterComponents) {
     this.plane = plane;
     components = gc;
+    this.fighterComponents = fighterComponents;
     treasurePossibilities = new ArrayList();
+    treasurePossibilities.add(LifeTreasure.class);
+    treasurePossibilities.add(MultipleBulletsTreasure.class);
   }
   
   public void setProbability(float probability) {
     this.probability = probability;
-    treasurePossibilities.add(LifeTreasure.class);
   }
   
   private void createTreasure() {
     int treasure = int (random(treasurePossibilities.size()));
     waitingTime = 600;
-    //if(treasurePossibilities.get(treasure).equals(LifeTreasure.class))
+    int lifeSpam = 200;
+    float x = random(width - 2 * margin) + margin;      
+    float y = random(height - 2 * margin) + margin;
+    if(treasurePossibilities.get(treasure) == LifeTreasure.class)
     {
-      float x = random(width - 2 * margin) + margin;      
-      float y = random(height - 2 * margin) + margin;
-      components.addChild(new LifeTreasure(x, y, 200, plane));
+      components.addChild(new LifeTreasure(x, y, lifeSpam, plane));
+      return;
+    }
+    if(treasurePossibilities.get(treasure) == MultipleBulletsTreasure.class)
+    {
+      components.addChild(new MultipleBulletsTreasure(x, y, lifeSpam, plane, fighterComponents));
+      return;
     }
   }
 
