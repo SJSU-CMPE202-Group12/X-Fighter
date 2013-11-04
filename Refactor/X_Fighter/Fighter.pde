@@ -101,5 +101,9 @@ class Fighter extends Collide implements Component {
     else
       disappear--;
   }
+  
+  public void increaseLife(int life) {
+    live += life;
+  }
 }
 

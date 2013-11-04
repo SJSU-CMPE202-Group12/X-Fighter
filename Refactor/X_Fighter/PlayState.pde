@@ -10,6 +10,7 @@ public class PlayState implements IBoardState {
   private GameComponents gameComponents; // a collection of the Bullet, Enemy, MyPlane, Explosion components in the game
   private GameComponents fighterComponents;
   private GameComponents enemyComponents;
+  private TreasureFactory treasure;
 
   public PlayState(GameBoard b) {
     board = b;
@@ -22,7 +23,8 @@ public class PlayState implements IBoardState {
 
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
-    enemyGenerator = new EnemyGenerator(enemyComponents);         
+    enemyGenerator = new EnemyGenerator(enemyComponents);
+    treasure = new TreasureFactory(fighter, gameComponents);    
 
     Score.COUNTER = 0;
   }
@@ -84,6 +86,7 @@ public class PlayState implements IBoardState {
     enemyGenerator.update();
     checkCollision();
     gameComponents.display();
+    treasure.manageTreasure();
 
     drawPlayScene();
     toGameOver();
