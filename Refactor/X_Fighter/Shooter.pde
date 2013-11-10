@@ -1,4 +1,4 @@
-public abstract class Shooter implements IShootDecorator {
+public abstract class Shooter implements IShootStrategy {
   
   protected GameComponents components;
   protected Fighter plane;
