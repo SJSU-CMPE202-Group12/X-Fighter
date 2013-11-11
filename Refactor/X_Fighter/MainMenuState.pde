@@ -39,7 +39,7 @@ public class MainMenuState implements IBoardState {
     
     LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Challenge", "play");
-    dict.put("Help", "about");
+    dict.put("About", "about");
     board.drawMenu(dict);
   }
 }

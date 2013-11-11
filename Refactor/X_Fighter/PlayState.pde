@@ -96,7 +96,7 @@ public class PlayState implements IBoardState {
     //background(0);
 
     String s = "" + Score.COUNTER;
-    PFont f = createFont("Arial", 12, true);
+    PFont f = createFont("Franklin Gothic Demi", 20, true);
     textFont(f, 12);
     textAlign(LEFT);
     text("Level ", 20, 20);
