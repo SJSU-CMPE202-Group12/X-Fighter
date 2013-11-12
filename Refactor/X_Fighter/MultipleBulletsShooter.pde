@@ -1,17 +1,10 @@
-public class MultipleBulletsShooter extends Shooter{
-  
-  private Timer timer;
+public class MultipleBulletsShooter extends TimedShooter{
   
   public MultipleBulletsShooter(GameComponents gc, Fighter plane, int direction) {
     super(gc, plane, direction);
-    timer = new Timer("Multiple bullets power", 20000);
-    timer.start();
+    timer.setName("Multiple bullets power");
   }
   
-  public boolean hasTimer() {
-    return true;
-  }
-
   public void shoot() {
     Bullet b = new Bullet(plane.getX(), plane.getY() - plane.getHeight()/2, direction);
     components.addChild(b);  

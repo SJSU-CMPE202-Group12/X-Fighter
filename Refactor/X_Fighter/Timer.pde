@@ -27,4 +27,8 @@ public class Timer {
     return finalTime - startTime;
   }
   
+  public void setName(String name) {
+    title = name;
+  }
+  
 }

@@ -108,16 +108,31 @@ class Fighter extends Collide implements Component {
   }
   
   public void setShooter(IShootStrategy shooter) {
-    //if(this.shooter.class == shooter.class && shooter.class != DefaultShooter)
+    if(this.shooter.getClass() == shooter.getClass() && shooter instanceof TimedShooter)
     {
-      //this.sho
+      ((TimedShooter) this.shooter).increaseTime();
     }
-    this.shooter = shooter;
+    else
+    {
+      this.shooter = shooter;
+    }
   }
   
   public void setDefaultShooter() {
     setShooter(new DefaultShooter(fighterComponents, this, -1));
   }
     
+  public IShootStrategy getShooter() {
+    return shooter;
+  }
+  
+  public int getShooterTimeLeft() {
+    if(shooter instanceof TimedShooter)
+    {
+      return ((TimedShooter) shooter).getTimeLeft() / 100;
+    }
+    return 0;
+  }
+  
 }
 
