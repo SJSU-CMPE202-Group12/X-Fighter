@@ -1,4 +1,3 @@
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -11,6 +10,7 @@ public class PlayState implements IBoardState {
   private GameComponents fighterComponents;
   private GameComponents enemyComponents;
   private TreasureFactory treasure;
+  private Blink blink;
 
   public PlayState(GameBoard b) {
     board = b;
@@ -25,7 +25,8 @@ public class PlayState implements IBoardState {
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
     enemyGenerator.attachObserver();
-    treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);    
+    treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
+    blink = new Blink(500, false);    
 
     Score.COUNTER = 0;
   }
@@ -97,7 +98,7 @@ public class PlayState implements IBoardState {
     //background(0);
 
     String s = "" + Score.COUNTER;
-    PFont f = createFont("Arial", 12, true);
+    PFont f = createFont("Franklin Gothic Demi", 20, true);
     textFont(f, 12);
     textAlign(LEFT);
     text("Level ", 20, 20);
@@ -106,6 +107,29 @@ public class PlayState implements IBoardState {
     text(s, 55, 40);
     text("Live", 20, 60);
     text(fighter.getLife(), 55, 60);
+    
+    // displaying timer if you have a TimedShooter on the fighter
+    IShootStrategy shooter;
+    shooter = fighter.getShooter(); 
+    if(shooter instanceof TimedShooter)
+    {
+      int totalTime = ((TimedShooter) shooter).getTimeLeft() / 10;
+      
+      if(blink.display(totalTime))
+      {
+        int x = width - 22;
+        int y = height - 25;
+        textAlign(RIGHT);
+        text(((TimedShooter) shooter).getTimerName(), x, height - 40);
+        text(String.format("%02d", totalTime % 100), x, y);
+        x -= 22;
+        totalTime /= 100;
+        text(String.format("%02d", totalTime % 60) + " :", x, y);
+        x -= 22;
+        totalTime /= 60;
+        text(String.format("%02d", totalTime) + " :", x, y);
+      }
+    }
 
     Button pauseButton = new Button(board.getWidth()-20, 0, "  ||  ", "pause", LEFT);
     board.drawMenu(pauseButton);

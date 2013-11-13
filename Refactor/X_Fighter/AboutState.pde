@@ -38,6 +38,9 @@ public class AboutState implements IBoardState {
   public void draw() {
     board.drawText("About");
     
+    board.drawDescription("Press <UP>, <DOWN>, <LEFT>, <RIGHT> to control.", 300);
+    board.drawDescription("Enjoy it!", 320);
+    
     LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Back to Main Menu", "mainmenu");
     board.drawMenu(dict);

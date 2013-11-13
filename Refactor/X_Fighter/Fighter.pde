@@ -8,7 +8,7 @@ class Fighter extends Collide implements Component {
   private int nextShoot = 0;  //when to shoot the next bullet
   private GameComponents fighterComponents;
   private PImage myPlaneImg;
-  private IShootDecorator shooter;
+  private IShootStrategy shooter;
   
   Fighter(int x, int y, GameComponents gc) {
     myPlaneImg = loadImage("myplane.png");
@@ -107,13 +107,32 @@ class Fighter extends Collide implements Component {
     live += life;
   }
   
-  public void setShooter(IShootDecorator shooter) {
-    this.shooter = shooter;
+  public void setShooter(IShootStrategy shooter) {
+    if(this.shooter.getClass() == shooter.getClass() && shooter instanceof TimedShooter)
+    {
+      ((TimedShooter) this.shooter).increaseTime();
+    }
+    else
+    {
+      this.shooter = shooter;
+    }
   }
   
   public void setDefaultShooter() {
     setShooter(new DefaultShooter(fighterComponents, this, -1));
   }
     
+  public IShootStrategy getShooter() {
+    return shooter;
+  }
+  
+  public int getShooterTimeLeft() {
+    if(shooter instanceof TimedShooter)
+    {
+      return ((TimedShooter) shooter).getTimeLeft() / 100;
+    }
+    return 0;
+  }
+  
 }
 

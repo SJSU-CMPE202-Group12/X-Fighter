@@ -74,12 +74,17 @@ public class GameBoard {
   }
   
   public void drawText(String s) {
-    PFont f = createFont("Arial", 36, true);
+    PFont f = createFont("Showcard Gothic", 46, true);
     drawText(f, s, 150, 100, CENTER);
   }
   
   public void drawSummary(String s, int y) {
-    PFont f = createFont("Arial", 20, true);
+    PFont f = createFont("Agency FB Bold", 30, true);
+    drawText(f, s, 150, y, CENTER);
+  }
+  
+  public void drawDescription(String s, int y) {
+    PFont f = createFont("Agency FB Bold", 16, true);
     drawText(f, s, 150, y, CENTER);
   }
   
@@ -90,7 +95,7 @@ public class GameBoard {
   }
   
   public void drawMenu(LinkedHashMap<String, String> dict) {
-    PFont f = createFont("Arial", 12, true);
+    PFont f = createFont("Agency FB Bold", 30, true);
     textFont(f, 20);
     fill(255);
     int x = 150;

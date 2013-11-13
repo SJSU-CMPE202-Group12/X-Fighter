@@ -9,7 +9,7 @@ public void setup() {
   size(300, 500);
   noStroke();
   
-  bg = loadImage("space1.jpg");
+  bg = loadImage("background.jpg");
   background(bg);
   
   board = new GameBoard(width, height);
