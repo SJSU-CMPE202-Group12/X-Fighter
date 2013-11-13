@@ -12,7 +12,7 @@ public abstract class Treasure extends Collide implements Component{
     ypos = y;
     life = lifeSpam;
     this.plane = plane;
-    blink = new Blink(lifeSpam / 2);
+    blink = new Blink(lifeSpam / 2, true);
   }
   public void addChild(Component c) {}
   

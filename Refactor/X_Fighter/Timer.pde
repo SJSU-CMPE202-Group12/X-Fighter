@@ -24,11 +24,15 @@ public class Timer {
   }
   
   public int getTimeLeft() {
-    return finalTime - startTime;
+    return finalTime - millis();
   }
   
   public void setName(String name) {
     title = name;
+  }
+  
+  public String getName() {
+    return title;
   }
   
 }

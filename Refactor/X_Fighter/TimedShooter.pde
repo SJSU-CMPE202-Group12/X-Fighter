@@ -17,5 +17,9 @@ public abstract class TimedShooter extends Shooter{
     return timer.getTimeLeft();
   }
   
+  public String getTimerName() {
+    return timer.getName();
+  }
+  
   public abstract void shoot();
 }

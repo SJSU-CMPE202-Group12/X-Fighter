@@ -2,7 +2,7 @@ public class MultipleBulletsShooter extends TimedShooter{
   
   public MultipleBulletsShooter(GameComponents gc, Fighter plane, int direction) {
     super(gc, plane, direction);
-    timer.setName("Multiple bullets power");
+    timer.setName("Multiple bullets");
   }
   
   public void shoot() {
