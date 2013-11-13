@@ -24,6 +24,7 @@ public class PlayState implements IBoardState {
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
+    enemyGenerator.attachObserver();
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);    
 
     Score.COUNTER = 0;
