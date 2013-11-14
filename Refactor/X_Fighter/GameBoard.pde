@@ -5,6 +5,7 @@ public class GameBoard {
   private int height;
   private IBoardState current_state;
   private List<Button> buttons;
+  private EnemyGenerator enemyGenerator;
   
   public GameBoard(int w, int h) {
     width = w;
@@ -23,6 +24,20 @@ public class GameBoard {
   
   public IBoardState getState() {
     return current_state;
+  }
+  
+  public void setEnemyGenerator(EnemyGenerator e) {
+    enemyGenerator = e;
+  }
+  
+  public int getScorePoints() {
+    if(enemyGenerator == null)
+      return 0;
+    return enemyGenerator.getScorePoints();
+  }
+  
+  public Score getScore() {
+    return enemyGenerator.getScore();
   }
   
   public void setState(int enuState) {
@@ -115,4 +130,5 @@ public class GameBoard {
     button.draw();
     buttons.add(button);
   }
+
 }

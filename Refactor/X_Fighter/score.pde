@@ -1,3 +1,11 @@
-public static class Score {
-  public static int COUNTER = 0;
+public class Score {
+  private int score = 0;
+  
+  public void increaseScore(int delta) {
+    score += delta;
+  }
+  
+  public int getScore() {
+    return score;
+  }
 }

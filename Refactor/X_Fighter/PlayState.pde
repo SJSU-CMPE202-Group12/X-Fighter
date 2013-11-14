@@ -24,10 +24,10 @@ public class PlayState implements IBoardState {
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
+    board.setEnemyGenerator(enemyGenerator);
+    enemyComponents.setScore(board.getScore());
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
     blink = new Blink(500, false);    
-
-    Score.COUNTER = 0;
   }
 
   @Override
@@ -96,7 +96,7 @@ public class PlayState implements IBoardState {
   public void drawPlayScene() {
     //background(0);
 
-    String s = "" + Score.COUNTER;
+    String s = "" + board.getScorePoints();
     PFont f = createFont("Franklin Gothic Demi", 20, true);
     textFont(f, 12);
     textAlign(LEFT);

@@ -79,8 +79,11 @@ abstract class Enemy extends Collide implements Component
   public boolean destroy()
   {
     live -= 1;
-    Score.COUNTER ++;
     return true;
+  }
+  
+  public void increaseScore(Score s) {
+    s.increaseScore(1);
   }
   
   public void display()

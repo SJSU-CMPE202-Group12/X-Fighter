@@ -3,11 +3,12 @@ class EnemyGenerator
   private int lastPlane; // how many frames ago did the last plane appeared
   private Level level;
   private GameComponents enemyComponents; // a collection of bullet and enemy plane
+  private Score score;
   
   public EnemyGenerator(GameComponents gc)
   {
     enemyComponents = gc;
-    
+    score = new Score();
     level = new Level();
     lastPlane = level.getRatio();
   }
@@ -53,6 +54,14 @@ class EnemyGenerator
   public void update()
   {
     generateEnemyPlane();    
-    level.levelUp(Score.COUNTER);
+    level.levelUp(score.getScore());
+  }
+  
+  public int getScorePoints() {
+    return score.getScore();
+  }
+  
+  public Score getScore() {
+    return score;
   }
 }
