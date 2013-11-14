@@ -10,6 +10,8 @@ public interface IBoardState {
 
   public void toGameOver() throws XFighterException;
 
+  public void toResumeGame() throws XFighterException;
+  
   public void draw();
 
 }

@@ -1,9 +1,8 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class PlayState implements IBoardState {
+public class PlayState extends GameState {
 
-  private GameBoard board;
   private Fighter fighter;
   private EnemyGenerator enemyGenerator; 
   private GameComponents gameComponents; // a collection of the Bullet, Enemy, MyPlane, Explosion components in the game
@@ -13,7 +12,7 @@ public class PlayState implements IBoardState {
   private Blink blink;
 
   public PlayState(GameBoard b) {
-    board = b;
+    super(b);
     gameComponents = new GameComponents(); 
     fighterComponents = new GameComponents();
     enemyComponents = new GameComponents();
@@ -31,6 +30,18 @@ public class PlayState implements IBoardState {
     blink = new Blink(500, false);    
   }
   
+  @Override
+  public void toPause() {
+    pause();
+    board.setState(EnuBoardState.PAUSE);
+  }
+
+  @Override
+  public void toGameOver() {
+    if (beShot())
+      board.setState(EnuBoardState.GAME_OVER);
+  }
+
   private void pause() {
     board.setRecoverGame(this);
     fighter.pause(); 
@@ -39,33 +50,6 @@ public class PlayState implements IBoardState {
   public void resume() {
     board.setRecoverGame(null);
     fighter.resume();
-  }
-
-  @Override
-  public void toPlay() throws XFighterException {
-    throw new XFighterException();
-  }
-
-  @Override
-  public void toAbout() throws XFighterException {
-    throw new XFighterException();
-  }
-
-  @Override
-  public void toPause() {
-    pause();
-    board.setState(EnuBoardState.PAUSE);
-  }
-
-  @Override
-  public void toMainMenu() throws XFighterException {
-    throw new XFighterException();
-  }
-
-  @Override
-  public void toGameOver() {
-    if (beShot())
-      board.setState(EnuBoardState.GAME_OVER);
   }
 
   private boolean beShot() {

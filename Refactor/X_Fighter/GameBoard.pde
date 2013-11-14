@@ -91,7 +91,10 @@ public class GameBoard {
         current_state.toMainMenu();
       } else if (stateName.toLowerCase() == "gameover") {
         current_state.toGameOver();
+      } else if (stateName.toLowerCase() == "resume") {
+        current_state.toResumeGame();
       }
+      
     } catch (XFighterException e) {
       drawText("Error");
     }
