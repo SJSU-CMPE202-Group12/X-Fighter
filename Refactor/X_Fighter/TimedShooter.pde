@@ -21,5 +21,13 @@ public abstract class TimedShooter extends Shooter{
     return timer.getName();
   }
   
+  public void pause() {
+    timer.pause();
+  }
+  
+  public void resume() {
+    timer.resume();
+  }
+  
   public abstract void shoot();
 }

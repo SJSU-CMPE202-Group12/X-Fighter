@@ -134,5 +134,19 @@ class Fighter extends Collide implements Component {
     return 0;
   }
   
+  public void pause() {
+    if(shooter instanceof TimedShooter)
+    {
+      ((TimedShooter) shooter).pause();
+    }
+  }
+  
+  public void resume() {
+    if(shooter instanceof TimedShooter)
+    {
+      ((TimedShooter) shooter).resume();
+    }
+  }
+
 }
 

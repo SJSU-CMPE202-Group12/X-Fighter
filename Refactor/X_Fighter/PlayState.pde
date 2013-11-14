@@ -24,11 +24,21 @@ public class PlayState implements IBoardState {
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
-    board.setEnemyGenerator(enemyGenerator);
+    board.setScore(enemyGenerator.getScore());
     enemyComponents.setScore(board.getScore());
     enemyGenerator.attachObserver();
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
     blink = new Blink(500, false);    
+  }
+  
+  private void pause() {
+    board.setRecoverGame(this);
+    fighter.pause(); 
+  }
+  
+  public void resume() {
+    board.setRecoverGame(null);
+    fighter.resume();
   }
 
   @Override
@@ -43,6 +53,7 @@ public class PlayState implements IBoardState {
 
   @Override
   public void toPause() {
+    pause();
     board.setState(EnuBoardState.PAUSE);
   }
 

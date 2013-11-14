@@ -48,7 +48,7 @@ public class GameOverState implements IBoardState {
     dict.put("Back to Main Menu", "mainmenu");
     board.drawMenu(dict);
     
-    board.drawSummary("Your Score is " + board.getScore(), 130);
+    board.drawSummary("Your Score is " + board.getScorePoints(), 130);
   }
 
 }

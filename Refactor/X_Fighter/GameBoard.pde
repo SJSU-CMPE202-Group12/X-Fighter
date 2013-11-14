@@ -5,7 +5,8 @@ public class GameBoard {
   private int height;
   private IBoardState current_state;
   private List<Button> buttons;
-  private EnemyGenerator enemyGenerator;
+  private Score score;
+  private PlayState recoverGame;
   
   public GameBoard(int w, int h) {
     width = w;
@@ -26,18 +27,22 @@ public class GameBoard {
     return current_state;
   }
   
-  public void setEnemyGenerator(EnemyGenerator e) {
-    enemyGenerator = e;
+  public void setScore(Score s) {
+    score = s;
   }
   
   public int getScorePoints() {
-    if(enemyGenerator == null)
+    if(score == null)
       return 0;
-    return enemyGenerator.getScorePoints();
+    return score.getScore();
   }
   
   public Score getScore() {
-    return enemyGenerator.getScore();
+    return score;
+  }
+  
+  public void setRecoverGame(PlayState game) {
+    recoverGame = game;
   }
   
   public void setState(int enuState) {
@@ -56,6 +61,10 @@ public class GameBoard {
       break;
     case EnuBoardState.GAME_OVER:
       current_state = new GameOverState(this);
+      break;
+    case EnuBoardState.RECOVER_GAME:
+      current_state = recoverGame;
+      recoverGame.resume();
       break;
     }
   }

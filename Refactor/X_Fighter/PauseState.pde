@@ -11,7 +11,7 @@ public class PauseState implements IBoardState {
 
   @Override
   public void toPlay() throws XFighterException {
-    board.setState(EnuBoardState.PLAY);
+    board.setState(EnuBoardState.RECOVER_GAME);
   }
 
   @Override
