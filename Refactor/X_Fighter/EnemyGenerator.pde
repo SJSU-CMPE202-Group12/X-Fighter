@@ -1,7 +1,7 @@
-class EnemyGenerator
+class EnemyGenerator implements ILevelObserver
 {
   private int lastPlane; // how many frames ago did the last plane appeared
-  private Level level;
+  protected Level level;
   private GameComponents enemyComponents; // a collection of bullet and enemy plane
   private Score score;
   
@@ -10,19 +10,35 @@ class EnemyGenerator
     enemyComponents = gc;
     score = new Score();
     level = new Level();
+    
+
     lastPlane = level.getRatio();
   }
+    public void updateObservers(){
+          Enemy enemyBossLevel1 = new BossPlane1(level.getSpeed());     
+      enemyComponents.addChild(enemyBossLevel1);
+
+  }
+
+  public void attachObserver() {
+    level.attach(this);
+  }
+  
 
   private void addEnemyPlane()
-  {
+  {    
+
     if (level.getLevel()==1){
       Enemy enemyPlaneLevel1 = new EnemyPlaneLevel1(level.getSpeed());     
-      enemyComponents.addChild(enemyPlaneLevel1);    
+      enemyComponents.addChild(enemyPlaneLevel1);
+        
     }
     else if(level.getLevel()==2){
+
       Enemy enemyPlaneLevel2 = new EnemyPlaneLevel2(level.getSpeed());     
-      enemyComponents.addChild(enemyPlaneLevel2);    
-    }
+      enemyComponents.addChild(enemyPlaneLevel2);  
+          
+     }
     else if(level.getLevel()>=3){ //when arriving level 3, the enemyplane could shooting
       Enemy enemyPlaneWithShooting = new EnemyPlaneWithShooting(level.getSpeed());
       enemyPlaneWithShooting.setShoot(enemyComponents); // enemy plane that can shoot and add bullets to the components
@@ -50,7 +66,13 @@ class EnemyGenerator
   {
     return level.getNextLevelPoints();
   }
+  public void updateObserver(){
+    
+  //Enemy enemyBossLevel1 = new BossPlane1(2);
+        enemyComponents.addChild(new BossPlane1(2));  
+
   
+  }
   public void update()
   {
     generateEnemyPlane();    

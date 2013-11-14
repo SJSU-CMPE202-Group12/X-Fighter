@@ -26,6 +26,7 @@ public class PlayState implements IBoardState {
     enemyGenerator = new EnemyGenerator(enemyComponents);
     board.setEnemyGenerator(enemyGenerator);
     enemyComponents.setScore(board.getScore());
+    enemyGenerator.attachObserver();
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
     blink = new Blink(500, false);    
   }
