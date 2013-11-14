@@ -32,6 +32,7 @@ public class Button {
     }
     textAlign(align);
     text(label, x, y + 20);
+    fill(255);
   }
 
   boolean over() {
