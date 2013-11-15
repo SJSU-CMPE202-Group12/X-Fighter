@@ -18,9 +18,7 @@ public void setup() {
 
 public void draw() {
   background(bg);
-  
   board.getState().draw();
-  board.mousePressed();
 }
 
 
@@ -54,4 +52,8 @@ void keyReleased(){
     if (keyCode == RIGHT) 
       fighterControl.releaseRightKey();
    }
+ }
+ 
+ void mousePressed() {
+   board.mousePressed();
  }

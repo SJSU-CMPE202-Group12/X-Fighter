@@ -67,7 +67,6 @@ public class GameBoard {
       recoverGame.resume();
       break;
     }
-    delay(100);
   }
   
   public void mousePressed() {
