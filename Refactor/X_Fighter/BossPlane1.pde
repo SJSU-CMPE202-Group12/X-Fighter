@@ -27,7 +27,13 @@ public class BossPlane1 extends EnemyPlaneLevel2{
     s.increaseScore(3);
   }
 
-
+  public void move() {
+    super.move();
+    if(live == 0) 
+    {
+      enemyGenerator.setThereIsBoss(false);
+    }
+  }
 
 
 }
