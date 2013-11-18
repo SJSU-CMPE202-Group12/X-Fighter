@@ -13,6 +13,7 @@ class Explosion implements Component {
     ypos = y;
     myAnimation = new Gif(xFighter, "Explosion.gif");
     myAnimation.noLoop();
+    
   } 
   
   void addChild(Component c){

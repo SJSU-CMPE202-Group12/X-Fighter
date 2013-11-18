@@ -17,14 +17,15 @@ public class PlayState implements IBoardState {
     gameComponents = new GameComponents(); 
     fighterComponents = new GameComponents();
     enemyComponents = new GameComponents();
-
     gameComponents.addChild(fighterComponents);
     gameComponents.addChild(enemyComponents);
 
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
+ 
     enemyGenerator.attachObserver();
+
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
     blink = new Blink(500, false);    
 
@@ -89,7 +90,6 @@ public class PlayState implements IBoardState {
     checkCollision();
     gameComponents.display();
     treasure.manageTreasure();
-
     drawPlayScene();
     toGameOver();
   }
