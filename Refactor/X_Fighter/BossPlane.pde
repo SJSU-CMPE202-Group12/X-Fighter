@@ -11,7 +11,7 @@ public class BossPlane extends EnemyPlaneWithShooting implements IBossSubject{
   {     
     super(speed);
     this.enemyGenerator = enemyGenerator;
-    enemyImg = loadImage("images.jpeg");
+    enemyImg = loadImage("boss.png");
     enemyImg.resize(50, 40);
     setLive(lives);   //enemy plane has three life. 
     shootRate = 20;
