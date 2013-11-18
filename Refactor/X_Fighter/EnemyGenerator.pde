@@ -1,10 +1,10 @@
-class EnemyGenerator implements ILevelObserver
+class EnemyGenerator implements ILevelObserver, IBossObserver
 {
   private int lastPlane; // how many frames ago did the last plane appeared
   protected Level level;
   private GameComponents enemyComponents; // a collection of bullet and enemy plane
   private Score score;
-  private boolean bossIsPresent = false;
+  private boolean bossIsPresent = false; 
   
   public EnemyGenerator(GameComponents gc)
   {
@@ -17,9 +17,12 @@ class EnemyGenerator implements ILevelObserver
   }
   
   public void updateObservers(){
-      Enemy enemyBossLevel1 = new BossPlane1(level.getSpeed(), this);     
-      enemyComponents.addChild(enemyBossLevel1);
-      setThereIsBoss(true);
+      List<IBossObserver> observers = new ArrayList<IBossObserver>();
+      observers.add((IBossObserver) level);
+      observers.add((IBossObserver) this);
+      Enemy boss = new BossPlane(level.getSpeed(), this, level.getLevel(), observers);     
+      enemyComponents.addChild(boss);
+      boss.setShoot(enemyComponents);
   }
 
   public void attachObserver() {
@@ -72,7 +75,7 @@ class EnemyGenerator implements ILevelObserver
   public void update()
   {
     generateEnemyPlane();    
-    level.levelUp(score.getScore());
+    level.act(score.getScore());
   }
   
   public int getScorePoints() {
@@ -83,7 +86,8 @@ class EnemyGenerator implements ILevelObserver
     return score;
   }
   
-  public void setThereIsBoss(boolean thereIsBoss) {
-    bossIsPresent = thereIsBoss;
+  public void updateBossObserver(boolean isThereBoss) {
+    bossIsPresent = isThereBoss;
   }
+  
 }
