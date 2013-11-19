@@ -47,11 +47,15 @@ public class Bullet extends Collide implements Component {
   }
   
   void display() {
-    if (lifetime > 0) {
+    if (lifetime > 0) {  
       lifetime -= 1;
       ypos += direction * speed;
       imageMode(CENTER);
       image(bulletImg, xpos, ypos); 
     }
+  }
+  
+  void setLifeTime(int newLifeTime) {
+    lifetime = newLifeTime;
   }
 }

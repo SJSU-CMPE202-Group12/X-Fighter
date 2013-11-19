@@ -1,4 +1,4 @@
-class Level implements Subject
+class Level implements Subject, IBossObserver
 {
   private int level = 1; //game starts at level 1
   private int pointsToNextLevel = 10;
@@ -37,30 +37,38 @@ class Level implements Subject
   }
   
   public void notifyObserver(){
-  for(ILevelObserver obj : observers)
-obj.updateObservers();
+    for(ILevelObserver obj : observers)
+      obj.updateObservers();
   }
   
   public void detach(ILevelObserver obj){
-  observers.remove(obj);
-  
+    observers.remove(obj);
   }
   
     public void attach(ILevelObserver obj){
   observers.add(obj);
   
   }
-  public void levelUp(int score)
-  {
-    
-    if(score >= nextLevelPoints)
-    {
+  
+  public void levelUp() {
       ++level;
-      notifyObserver();
-
-      nextLevelPoints += pointsToNextLevel;
       ratio *= ratioIncreasePerLevel;
       maxSpeed *= speedIncreasePerLevel;
+  }
+  
+  public void act(int score)
+  {
+    if(score >= nextLevelPoints)
+    {
+      nextLevelPoints += pointsToNextLevel;
+      notifyObserver();
+    }
+  }
+  
+  public void updateBossObserver(boolean isThereBoss) {
+    if(!isThereBoss)
+    {
+      levelUp();
     }
   }
    

@@ -2,12 +2,12 @@ abstract class Enemy extends Collide implements Component
 {
   
   
-  float xpos; // x coordinate of center of plane 
-  float ypos; // y coordinate of center of plane
-  float planeSpeed; // speed of plane (coordinate/frame)
+  protected float xpos; // x coordinate of center of plane 
+  protected float ypos; // y coordinate of center of plane
+  protected float planeSpeed; // speed of plane (coordinate/frame)
   int live;
   boolean shoot = false; //does this enemy plane shoot?
-  int shootRate = 30; //shoot one bullet every 30 frames
+  protected int shootRate = 30; //shoot one bullet every 30 frames
   int nextShoot = 0;  //when to shoot the next bullet
   GameComponents enemyComponents;
   
