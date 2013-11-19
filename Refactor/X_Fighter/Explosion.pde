@@ -14,7 +14,7 @@ class Explosion implements Component {
     ypos = y;
     myAnimation = new Gif(xFighter, "Explosion.gif");
     myAnimation.noLoop();
-        player1 = minim.loadFile("beep-1.mp3");
+        player1 = minim.loadFile("bomb.mp3");
 
             player1.play();
     

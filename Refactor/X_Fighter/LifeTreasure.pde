@@ -5,6 +5,7 @@ public class LifeTreasure extends Treasure {
   public LifeTreasure(float x, float y, int lifeSpam, Fighter plane) {
     super(x, y, lifeSpam, plane);
     treasureImage = loadImage("myplane.png");
+    
     treasureImage.resize(15, 15);
   } 
  

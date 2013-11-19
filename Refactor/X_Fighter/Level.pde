@@ -8,12 +8,16 @@ class Level implements Subject, IBossObserver
   private Random random;
   private ArrayList <ILevelObserver> observers = new ArrayList();
   private float delta = 0.01;
+  private AudioPlayer player2;
+
   private float ratioIncreasePerLevel = 0.95; //how much the ratio increases from one level to another in percentage (should be < 1)
   private float speedIncreasePerLevel = 1.2; //how much the speed increases from one level to another in percentage (should be > 1)
   private int ratio = 100; //game starts with ratio 100, its values means how many frames untill next plane appears
   
   public Level()
   {
+    player2 = minim.loadFile("beep-1.mp3");
+
     random = new Random();
   }
  
@@ -52,6 +56,7 @@ class Level implements Subject, IBossObserver
   
   public void levelUp() {
       ++level;
+            player2.play();
       ratio *= ratioIncreasePerLevel;
       maxSpeed *= speedIncreasePerLevel;
   }
