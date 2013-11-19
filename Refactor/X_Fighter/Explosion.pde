@@ -7,12 +7,16 @@ class Explosion implements Component {
   float ypos ;
   int lifetime=45;
   Gif myAnimation;
+  private AudioPlayer player1;
 
   Explosion(float x, float y){
     xpos = x;
     ypos = y;
     myAnimation = new Gif(xFighter, "Explosion.gif");
     myAnimation.noLoop();
+        player1 = minim.loadFile("beep-1.mp3");
+
+            player1.play();
     
   } 
   

@@ -55,7 +55,6 @@ obj.updateObservers();
     
     if(score >= nextLevelPoints)
     {
-      
       ++level;
       notifyObserver();
 

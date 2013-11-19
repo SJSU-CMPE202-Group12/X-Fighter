@@ -4,6 +4,7 @@ public class Timer {
   private int finalTime;
   private int total;
   private String title;
+  private int pause = -1;
   
   public Timer(String displayInfo, int milliseconds) {
     title = displayInfo;
@@ -35,4 +36,15 @@ public class Timer {
     return title;
   }
   
+  public void pause() {
+    pause = millis();
+  }
+  
+  public void resume() {
+    if(pause != -1)
+    {
+      finalTime += millis() - pause;
+      pause = -1;
+    }
+  }
 }

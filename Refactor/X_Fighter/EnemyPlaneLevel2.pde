@@ -11,8 +11,7 @@ class EnemyPlaneLevel2 extends Enemy{  //Enemyplane has 2 lives and should be sh
     live -= 1;
    
      if(live==0){
-     Score.COUNTER ++;
-     return true;
+       return true;
      }
      else
      return false; 

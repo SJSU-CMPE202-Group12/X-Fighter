@@ -5,6 +5,8 @@ public class GameBoard {
   private int height;
   private IBoardState current_state;
   private List<Button> buttons;
+  private Score score;
+  private PlayState recoverGame;
   
   public GameBoard(int w, int h) {
     width = w;
@@ -25,6 +27,24 @@ public class GameBoard {
     return current_state;
   }
   
+  public void setScore(Score s) {
+    score = s;
+  }
+  
+  public int getScorePoints() {
+    if(score == null)
+      return 0;
+    return score.getScore();
+  }
+  
+  public Score getScore() {
+    return score;
+  }
+  
+  public void setRecoverGame(PlayState game) {
+    recoverGame = game;
+  }
+  
   public void setState(int enuState) {
     switch (enuState) {
     case EnuBoardState.MAIN_MENU:
@@ -41,6 +61,10 @@ public class GameBoard {
       break;
     case EnuBoardState.GAME_OVER:
       current_state = new GameOverState(this);
+      break;
+    case EnuBoardState.RECOVER_GAME:
+      current_state = recoverGame;
+      recoverGame.resume();
       break;
     }
   }
@@ -67,7 +91,10 @@ public class GameBoard {
         current_state.toMainMenu();
       } else if (stateName.toLowerCase() == "gameover") {
         current_state.toGameOver();
+      } else if (stateName.toLowerCase() == "resume") {
+        current_state.toResumeGame();
       }
+      
     } catch (XFighterException e) {
       drawText("Error");
     }
@@ -115,4 +142,5 @@ public class GameBoard {
     button.draw();
     buttons.add(button);
   }
+
 }

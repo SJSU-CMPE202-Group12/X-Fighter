@@ -6,7 +6,7 @@ import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 
 import java.util.*;
-AudioPlayer player;
+
 Minim minim;//audio context
 
 final PApplet xFighter = this;
@@ -18,8 +18,6 @@ public void setup() {
   size(300, 500);
   noStroke();
     minim = new Minim(this);
-  player = minim.loadFile("POL-time-travel-short.mp3");
-  player.loop();
 
   bg = loadImage("background.jpg");
   background(bg);
@@ -30,7 +28,6 @@ public void setup() {
 
 public void draw() {
   background(bg);
-  
   board.getState().draw();
   board.mousePressed();
 }

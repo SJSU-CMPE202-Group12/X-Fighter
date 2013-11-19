@@ -3,19 +3,23 @@ class EnemyGenerator implements ILevelObserver
   private int lastPlane; // how many frames ago did the last plane appeared
   protected Level level;
   private GameComponents enemyComponents; // a collection of bullet and enemy plane
+  private Score score;
+  private boolean bossIsPresent = false;
   
   public EnemyGenerator(GameComponents gc)
   {
     enemyComponents = gc;
+    score = new Score();
     level = new Level();
     
 
     lastPlane = level.getRatio();
   }
-    public void updateObservers(){
-          Enemy enemyBossLevel1 = new BossPlane1(level.getSpeed());     
+  
+  public void updateObservers(){
+      Enemy enemyBossLevel1 = new BossPlane1(level.getSpeed(), this);     
       enemyComponents.addChild(enemyBossLevel1);
-
+      setThereIsBoss(true);
   }
 
   public void attachObserver() {
@@ -49,7 +53,7 @@ class EnemyGenerator implements ILevelObserver
   private void generateEnemyPlane()
   {
     lastPlane++;
-    if(lastPlane >= level.getRatio())
+    if(!bossIsPresent && lastPlane >= level.getRatio())
     {
       addEnemyPlane();
     } 
@@ -64,16 +68,22 @@ class EnemyGenerator implements ILevelObserver
   {
     return level.getNextLevelPoints();
   }
-  public void updateObserver(){
-    
-  //Enemy enemyBossLevel1 = new BossPlane1(2);
-        enemyComponents.addChild(new BossPlane1(2));  
-
   
-  }
   public void update()
   {
     generateEnemyPlane();    
-    level.levelUp(Score.COUNTER);
+    level.levelUp(score.getScore());
+  }
+  
+  public int getScorePoints() {
+    return score.getScore();
+  }
+  
+  public Score getScore() {
+    return score;
+  }
+  
+  public void setThereIsBoss(boolean thereIsBoss) {
+    bossIsPresent = thereIsBoss;
   }
 }

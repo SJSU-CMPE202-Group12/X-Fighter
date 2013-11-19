@@ -1,9 +1,8 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class PlayState implements IBoardState {
+public class PlayState extends GameState {
 
-  private GameBoard board;
   private Fighter fighter;
   private EnemyGenerator enemyGenerator; 
   private GameComponents gameComponents; // a collection of the Bullet, Enemy, MyPlane, Explosion components in the game
@@ -11,9 +10,14 @@ public class PlayState implements IBoardState {
   private GameComponents enemyComponents;
   private TreasureFactory treasure;
   private Blink blink;
+  private AudioPlayer player;
 
   public PlayState(GameBoard b) {
-    board = b;
+    super(b);
+  player = minim.loadFile("POL-time-travel-short.mp3");
+
+  player.loop();
+
     gameComponents = new GameComponents(); 
     fighterComponents = new GameComponents();
     enemyComponents = new GameComponents();
@@ -23,39 +27,37 @@ public class PlayState implements IBoardState {
     fighter = new Fighter(b.getWidth()/2, b.getHeight(), fighterComponents);  
     fighterComponents.addChild(fighter);
     enemyGenerator = new EnemyGenerator(enemyComponents);
- 
+
+    board.setScore(enemyGenerator.getScore());
+    enemyComponents.setScore(board.getScore());
     enemyGenerator.attachObserver();
 
     treasure = new TreasureFactory(fighter, gameComponents, fighterComponents);
     blink = new Blink(500, false);    
-
-    Score.COUNTER = 0;
   }
-
-  @Override
-  public void toPlay() throws XFighterException {
-    throw new XFighterException();
-  }
-
-  @Override
-  public void toAbout() throws XFighterException {
-    throw new XFighterException();
-  }
-
+  
   @Override
   public void toPause() {
+    pause();
     board.setState(EnuBoardState.PAUSE);
-  }
-
-  @Override
-  public void toMainMenu() throws XFighterException {
-    throw new XFighterException();
   }
 
   @Override
   public void toGameOver() {
     if (beShot())
       board.setState(EnuBoardState.GAME_OVER);
+  }
+
+  private void pause() {
+    board.setRecoverGame(this);
+    player.pause();
+    fighter.pause(); 
+  }
+  
+  public void resume() {
+    board.setRecoverGame(null);
+    player.play();
+    fighter.resume();
   }
 
   private boolean beShot() {
@@ -97,7 +99,7 @@ public class PlayState implements IBoardState {
   public void drawPlayScene() {
     //background(0);
 
-    String s = "" + Score.COUNTER;
+    String s = "" + board.getScorePoints();
     PFont f = createFont("Franklin Gothic Demi", 20, true);
     textFont(f, 12);
     textAlign(LEFT);
