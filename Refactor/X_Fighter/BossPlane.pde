@@ -16,7 +16,7 @@ public class BossPlane extends EnemyPlaneWithShooting implements IBossSubject{
     setLive(lives);   //enemy plane has three life. 
     shootRate = 20;
     this.bossObservers = bossObservers;
-    ((IBossSubject) this).notifyBossObserver(true);
+    ((IBossSubject) this).notifyBossObserver();
   } 
 
    public boolean destroy()
@@ -24,7 +24,7 @@ public class BossPlane extends EnemyPlaneWithShooting implements IBossSubject{
     live -= 1;
    
      if(live==0){
-       notifyBossObserver(false);
+       notifyBossObserver();
      return true;
      }
      else
@@ -100,10 +100,10 @@ public class BossPlane extends EnemyPlaneWithShooting implements IBossSubject{
     bossObservers.add(newObserver);
   }
   
-  public void notifyBossObserver(boolean isThereBoss) {
+  public void notifyBossObserver() {
     for(IBossObserver observer: bossObservers)
     {
-      observer.updateBossObserver(isThereBoss);
+      observer.updateBossObserver();
     }
   }
 

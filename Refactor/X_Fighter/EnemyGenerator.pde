@@ -86,8 +86,8 @@ class EnemyGenerator implements ILevelObserver, IBossObserver
     return score;
   }
   
-  public void updateBossObserver(boolean isThereBoss) {
-    bossIsPresent = isThereBoss;
+  public void updateBossObserver() {
+    bossIsPresent = !bossIsPresent;
   }
   
 }

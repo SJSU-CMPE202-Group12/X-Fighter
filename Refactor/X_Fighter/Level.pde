@@ -9,6 +9,7 @@ class Level implements Subject, IBossObserver
   private ArrayList <ILevelObserver> observers = new ArrayList();
   private float delta = 0.01;
   private AudioPlayer player2;
+  private boolean onHold = false;
 
   private float ratioIncreasePerLevel = 0.95; //how much the ratio increases from one level to another in percentage (should be < 1)
   private float speedIncreasePerLevel = 1.2; //how much the speed increases from one level to another in percentage (should be > 1)
@@ -70,11 +71,12 @@ class Level implements Subject, IBossObserver
     }
   }
   
-  public void updateBossObserver(boolean isThereBoss) {
-    if(!isThereBoss)
+  public void updateBossObserver() {
+    if(onHold)
     {
       levelUp();
     }
+    onHold = !onHold;
   }
    
 }
