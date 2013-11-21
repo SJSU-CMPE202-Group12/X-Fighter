@@ -17,7 +17,8 @@ public class AboutState extends GameState {
     board.drawText("About");
     
     board.drawDescription("Press <UP>, <DOWN>, <LEFT>, <RIGHT> to control.", 300);
-    board.drawDescription("Enjoy it!", 320);
+    board.drawDescription("Press <A> to accelerate fighter.", 320);
+    board.drawDescription("Enjoy it!", 340);
     
     LinkedHashMap<String, String> dict = new LinkedHashMap<String, String>();
     dict.put("Back to Main Menu", "mainmenu");

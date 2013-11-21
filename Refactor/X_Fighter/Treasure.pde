@@ -1,4 +1,4 @@
-public abstract class Treasure extends Collide implements Component{
+public abstract class Treasure extends Collide implements IComponent{
   
   protected PImage treasureImage;
   protected int life;
@@ -14,9 +14,9 @@ public abstract class Treasure extends Collide implements Component{
     this.plane = plane;
     blink = new Blink(lifeSpam / 2, true);
   }
-  public void addChild(Component c) {}
+  public void addChild(IComponent c) {}
   
-  public void removeChild(Component c) {}
+  public void removeChild(IComponent c) {}
   
   public int getLife() {
     return life;

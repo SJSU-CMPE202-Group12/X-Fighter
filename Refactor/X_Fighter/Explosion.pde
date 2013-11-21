@@ -1,6 +1,6 @@
 import gifAnimation.*;
 
-class Explosion implements Component {
+class Explosion implements IComponent {
   int playerWidth = 50;
   int playerHeight = 50;
   float xpos ;
@@ -20,10 +20,10 @@ class Explosion implements Component {
     
   } 
   
-  void addChild(Component c){
+  void addChild(IComponent c){
     // no implementation
   }
-  void removeChild(Component c){
+  void removeChild(IComponent c){
     // no implementation
   }
   

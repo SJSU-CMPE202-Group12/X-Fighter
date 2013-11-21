@@ -66,9 +66,9 @@ public class PlayState extends GameState {
 
   private void checkCollision() {
     //check collision between enemy and fighter
-    for (Component e : enemyComponents) {
+    for (IComponent e : enemyComponents) {
       Collide enemy = (Collide) e;
-      for (Component c : fighterComponents) {
+      for (IComponent c : fighterComponents) {
         Collide fighter = (Collide) c;
         if (enemy.collision(fighter))
         {

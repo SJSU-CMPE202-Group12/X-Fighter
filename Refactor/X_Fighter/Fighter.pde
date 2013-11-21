@@ -1,4 +1,4 @@
-class Fighter extends Collide implements Component {
+class Fighter extends Collide implements IComponent {
   private float xpos;    //x coordinate of center of my plane
   private float ypos;    //y coordinate of center of my plane
   private int speed;
@@ -37,10 +37,10 @@ class Fighter extends Collide implements Component {
     return myPlaneImg.height;
   }
 
-  void addChild(Component c) {
+  void addChild(IComponent c) {
     // no implementation
   }
-  void removeChild(Component c) {
+  void removeChild(IComponent c) {
     // no implementation
   }
 

@@ -1,4 +1,4 @@
-abstract class Enemy extends Collide implements Component
+abstract class Enemy extends Collide implements IComponent
 {
   
   
@@ -63,11 +63,11 @@ abstract class Enemy extends Collide implements Component
     return enemyImg.height;
   }
   
-  void addChild(Component c){
+  void addChild(IComponent c){
     // no implementation
   }
   
-  void removeChild(Component c){
+  void removeChild(IComponent c){
     // no implementation
   }
   

@@ -1,13 +1,13 @@
-public class GameComponents implements Component, Iterable<Component> {
-  private ArrayList<Component> components = new ArrayList<Component>();
+public class GameComponents implements IComponent, Iterable<IComponent> {
+  private ArrayList<IComponent> components = new ArrayList<IComponent>();
   
   private Score score;
   
-  void addChild(Component c){
+  void addChild(IComponent c){
     components.add(c);
   }
   
-  void removeChild(Component c){
+  void removeChild(IComponent c){
     components.remove(c);
   }
   
@@ -22,7 +22,7 @@ public class GameComponents implements Component, Iterable<Component> {
   
   public void display(){
     for (int i = components.size() - 1; i >= 0; i--) {
-      Component c = components.get(i);
+      IComponent c = components.get(i);
       if (c.getLife() <= 0)
       {
         if(c instanceof Enemy)
@@ -36,7 +36,7 @@ public class GameComponents implements Component, Iterable<Component> {
     }
   }
   
-  public Iterator<Component> iterator(){
+  public Iterator<IComponent> iterator(){
     return components.iterator();
   }
 }

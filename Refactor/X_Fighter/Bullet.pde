@@ -1,4 +1,4 @@
-public class Bullet extends Collide implements Component {
+public class Bullet extends Collide implements IComponent {
   float xpos;
   float ypos;
   float speed = 4; // move 4 pixels per draw
@@ -30,10 +30,10 @@ public class Bullet extends Collide implements Component {
     return bulletImg.height;
   }
   
-  void addChild(Component c){
+  void addChild(IComponent c){
     // no implementation
   }
-  void removeChild(Component c){
+  void removeChild(IComponent c){
     // no implementation
   }
   

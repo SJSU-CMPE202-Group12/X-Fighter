@@ -1,6 +1,6 @@
-public interface Component {
-  public void addChild(Component c);
-  public void removeChild(Component c);
+public interface IComponent {
+  public void addChild(IComponent c);
+  public void removeChild(IComponent c);
   public int getLife();
   public void display();
 }
