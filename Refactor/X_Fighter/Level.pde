@@ -17,7 +17,7 @@ class Level implements Subject, IBossObserver
   
   public Level()
   {
-    player2 = minim.loadFile("beep-1.mp3");
+    player2 = minim.loadFile("classic_video_game_level_up.mp3");
 
     random = new Random();
   }
