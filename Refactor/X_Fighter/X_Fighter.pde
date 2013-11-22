@@ -48,7 +48,9 @@ void keyPressed() {
         fighterControl.setDownKey();         
    }
 } 
-
+void mousePressed() {
+board.mousePressed();
+  }
 void keyReleased(){
   if (key=='a'||key=='A'){
      fighterControl.setSpeed(2);
