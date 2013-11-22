@@ -25,10 +25,6 @@ public class GameComponents implements IComponent, Iterable<IComponent> {
       IComponent c = components.get(i);
       if (c.getLife() <= 0)
       {
-        if(c instanceof Enemy)
-        {
-          ((Enemy) c).increaseScore(score);
-        }
         removeChild(c);
       }
       else

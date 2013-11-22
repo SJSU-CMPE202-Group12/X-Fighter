@@ -73,6 +73,10 @@ public class PlayState extends GameState {
         if (enemy.collision(fighter))
         {
           boolean collision = enemy.destroy();
+          if(enemy instanceof Enemy)
+          {
+            ((Enemy) enemy).increaseScore(board.getScore());
+          }
           fighter.destroy();
           if(collision == true)
           gameComponents.addChild(new Explosion(enemy.getX(), enemy.getY()));          

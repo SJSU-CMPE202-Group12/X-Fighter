@@ -29,7 +29,6 @@ public void setup() {
 public void draw() {
   background(bg);
   board.getState().draw();
-  board.mousePressed();
 }
 
 
@@ -49,8 +48,9 @@ void keyPressed() {
    }
 } 
 void mousePressed() {
-board.mousePressed();
-  }
+  board.mousePressed();
+}
+
 void keyReleased(){
   if (key=='a'||key=='A'){
      fighterControl.setSpeed(2);
